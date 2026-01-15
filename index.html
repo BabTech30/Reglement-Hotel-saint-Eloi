@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Règlement Intérieur de l'Hôtel</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50; /* Bleu foncé professionnel */
+            --accent-color: #e74c3c;  /* Rouge pour les interdits */
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: var(--bg-color);
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin: 0;
+            text-transform: uppercase;
+            font-size: 24px;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            font-size: 18px;
+            border-left: 5px solid var(--primary-color);
+            padding-left: 10px;
+            margin-top: 30px;
+            background-color: #eef2f5;
+            padding: 10px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        li::before {
+            content: "•";
+            color: var(--primary-color);
+            font-weight: bold;
+            position: absolute;
+            left: 5px;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        .warning-box {
+            background-color: #ffebee;
+            border: 2px solid var(--accent-color);
+            color: #c0392b;
+            padding: 20px;
+            text-align: center;
+            font-weight: bold;
+            margin-top: 40px;
+            border-radius: 5px;
+            text-transform: uppercase;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #777;
+        }
+
+        /* Icônes (Emojis) pour les titres */
+        .icon { margin-right: 8px; }
+
+        /* Version Mobile */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            h1 { font-size: 20px; }
+        }
+
+        /* Version Impression */
+        @media print {
+            body { background-color: #fff; }
+            .container { box-shadow: none; border: none; width: 100%; }
+            .warning-box { border: 2px solid black; color: black; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Règlement Intérieur</h1>
+            <p>Merci de respecter ces règles pour le confort et la sécurité de tous.</p>
+        </header>
+
+        <section>
+            <h2><span class="icon">🛡️</span>SÉCURITÉ ET ACCÈS</h2>
+            <ul>
+                <li>L'accès est réservé aux résidents. Les visites extérieures sont <span class="highlight">strictement interdites</span> sauf autorisation.</li>
+                <li>Le code du portail est confidentiel. Ne jamais le communiquer à un tiers.</li>
+                <li>Le portail doit impérativement rester fermé après chaque passage. Soyez vigilants.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2><span class="icon">🧹</span>HYGIÈNE ET ENTRETIEN CHAMBRES</h2>
+            <ul>
+                <li>Les chambres doivent être maintenues propres. Les poubelles doivent être vidées chaque semaine par vos soins.</li>
+                <li><span class="highlight">INTERDICTION DE FUMER</span> dans les chambres (y compris au rebord de la fenêtre).</li>
+                <li>Aérer la chambre quotidiennement ou après la douche pour éviter l'humidité.</li>
+                <li>Interdiction de cuisiner dans les chambres.</li>
+                <li>Aucun stockage de nourriture périssable (viande, légumes) dans les chambres pour éviter les nuisibles.</li>
+                <li>En hiver, chauffage max 21°C. Ne pas faire sécher de linge sur les radiateurs.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2><span class="icon">🍽️</span>ESPACES COMMUNS & CUISINE</h2>
+            <ul>
+                <li>Nettoyer et ranger les parties communes immédiatement après utilisation.</li>
+                <li>Horaires d'accès cuisine : <strong>08h00 - 22h00</strong>.</li>
+                <li>Créneaux pour cuisiner : <strong>11h-14h</strong> et <strong>18h-21h</strong>.</li>
+                <li>La vaisselle doit être faite et rangée après chaque repas.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2><span class="icon">🧺</span>LINGE ET BUANDERIE</h2>
+            <ul>
+                <li>Changement des draps le week-end (mettre les sales dans le sac prévu).</li>
+                <li>Lave-linge et sèche-linge : limité à <strong>1 usage par semaine/personne</strong>.</li>
+                <li>Machines réservées aux vêtements uniquement (pas de draps ni couettes).</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2><span class="icon">🤝</span>VIE EN COMMUNAUTÉ</h2>
+            <ul>
+                <li>Silence de rigueur à partir de <strong>23h00</strong>. Réduire le volume sonore dans les chambres.</li>
+                <li>Tenue correcte et politesse sont recommandées pour une bonne entente.</li>
+                <li>Respect absolu du personnel responsable sur place.</li>
+                <li>Interdiction formelle de prendre les affaires d'autrui (vol de linge, nourriture...).</li>
+                <li>Appareils électroménagers personnels interdits en chambre sans autorisation.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2><span class="icon">🚪</span>DÉPART</h2>
+            <ul>
+                <li>La chambre doit être libérée le jour du départ à <strong>11h00 Maximum</strong>.</li>
+            </ul>
+        </section>
+
+        <div class="warning-box">
+            Le non-respect de ces règles entraînera une expulsion définitive de l'hôtel.
+        </div>
+
+        <div class="footer">
+            <p>La Direction</p>
+        </div>
+    </div>
+
+</body>
+</html>
