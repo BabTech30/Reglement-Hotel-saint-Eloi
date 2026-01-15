@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Règlement & Services / Rules</title>
+    <title>Règlement & Actualités / Rules & News</title>
     <style>
         :root {
             --primary-color: #2c3e50;
@@ -12,6 +12,8 @@
             --card-bg: #ffffff;
             --positive-color: #27ae60;
             --chat-color: #3498db;
+            --highlight-gold: #f1c40f;
+            --news-bg: #e3f2fd; /* Bleu très clair pour les news */
         }
 
         body {
@@ -21,17 +23,63 @@
             color: #333;
             margin: 0;
             padding: 20px;
-            padding-bottom: 100px; /* Espace pour le chat */
+            padding-bottom: 100px;
             transition: all 0.3s ease;
         }
 
-        .container {
-            max-width: 800px;
+        /* Layout Grid pour Desktop */
+        .main-layout {
+            max-width: 1100px;
             margin: 0 auto;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap; /* Permet de passer en colonne sur mobile */
+        }
+
+        /* Colonne de gauche (Règlement) */
+        .content-column {
+            flex: 2; /* Prend 2/3 de l'espace */
+            min-width: 300px;
+        }
+
+        /* Colonne de droite (Actualités) */
+        .news-column {
+            flex: 1; /* Prend 1/3 de l'espace */
+            min-width: 280px;
+            order: -1; /* Sur mobile, on veut que ça s'affiche EN PREMIER */
+        }
+
+        /* Sur grand écran, on remet l'ordre normal (News à droite ou gauche selon préférence) */
+        @media (min-width: 800px) {
+            .news-column { order: 1; } /* News à droite */
+        }
+
+        .card {
             background-color: var(--card-bg);
-            padding: 40px;
+            padding: 30px;
             border-radius: 8px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        /* Style spécifique Fil d'Actualité */
+        .news-card {
+            background-color: var(--card-bg);
+            border-top: 5px solid #3498db;
+        }
+        .news-item {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+        .news-item:last-child { border-bottom: none; margin-bottom: 0; }
+        .news-date { font-size: 0.85em; color: #7f8c8d; font-weight: bold; }
+        .news-title { font-size: 1.1em; color: #2980b9; margin: 5px 0; font-weight: bold; }
+        .news-body { font-size: 0.95em; }
+        
+        /* Badge "Important" */
+        .badge-important {
+            background-color: var(--accent-color); color: white; padding: 2px 6px; border-radius: 4px; font-size: 0.7em; text-transform: uppercase; vertical-align: middle; margin-left: 5px;
         }
 
         /* Langue Selector */
@@ -40,62 +88,61 @@
 
         header { text-align: center; border-bottom: 2px solid var(--primary-color); padding-bottom: 20px; margin-bottom: 30px; }
         h1 { color: var(--primary-color); margin: 0; text-transform: uppercase; font-size: 24px; }
-        .subtitle { color: #666; margin-top: 10px; }
-
+        
         h2 {
             color: var(--primary-color); font-size: 18px; border-left: 5px solid var(--primary-color);
             padding-left: 10px; margin-top: 30px; background-color: #eef2f5; padding: 10px;
         }
 
+        /* RTL Support */
         body.rtl { direction: rtl; text-align: right; }
         body.rtl h2 { border-left: none; border-right: 5px solid var(--primary-color); padding-left: 0; padding-right: 10px; }
         body.rtl li { padding-left: 0; padding-right: 25px; }
         body.rtl li::before { left: auto; right: 5px; }
+        body.rtl .badge-important { margin-left: 0; margin-right: 5px; }
         
         ul { list-style-type: none; padding: 0; }
         li { margin-bottom: 12px; padding-left: 25px; position: relative; }
         li::before { content: "•"; color: var(--primary-color); font-weight: bold; position: absolute; left: 5px; }
         .highlight { font-weight: bold; color: var(--accent-color); }
 
-        /* Bloc Responsable */
-        .contact-card {
-            background: #fff3cd; border: 1px solid #ffeeba; padding: 15px; border-radius: 5px; margin-bottom: 20px; text-align: center;
+        /* Manager Card Styles */
+        .manager-card {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white; padding: 25px; border-radius: 12px; margin-bottom: 30px; text-align: center;
+            box-shadow: 0 10px 20px rgba(44, 62, 80, 0.3); position: relative; overflow: hidden;
         }
-        .contact-card strong { font-size: 1.1em; color: #856404; }
+        .manager-label { text-transform: uppercase; letter-spacing: 2px; font-size: 0.8em; opacity: 0.8; margin-bottom: 5px; }
+        .manager-name { font-size: 1.8em; font-weight: bold; margin: 0; color: var(--highlight-gold); }
+        .manager-phone { font-size: 1.4em; margin: 10px 0; display: block; }
+        .manager-actions { display: flex; gap: 10px; justify-content: center; margin-top: 15px; }
+        .action-btn { flex: 1; max-width: 150px; padding: 10px; border-radius: 5px; text-decoration: none; font-weight: bold; text-align: center; transition: transform 0.2s; }
+        .btn-call { background: white; color: var(--primary-color); }
+        .btn-sms { background: var(--positive-color); color: white; }
+        .action-btn:active { transform: scale(0.95); }
+        
+        .emergency-note { background: #ffebee; color: #c0392b; padding: 10px; border-radius: 5px; font-size: 0.9em; text-align: center; font-weight: bold; margin-top: 10px; }
 
-        /* Formulaire */
+        /* Form styles */
         .form-section { margin-top: 40px; padding-top: 20px; border-top: 2px dashed #ccc; }
         .form-group { margin-bottom: 15px; }
         label { display: block; margin-bottom: 5px; font-weight: bold; }
-        input, textarea, select.form-control {
-            width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box;
-        }
-        button.submit-btn {
-            background-color: var(--primary-color); color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; width: 100%; font-size: 16px;
-        }
-        button.submit-btn:hover { background-color: #1a252f; }
-
+        input, textarea, select.form-control { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
+        button.submit-btn { background-color: var(--primary-color); color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; width: 100%; font-size: 16px; }
+        
         /* ChatBot Widget */
         .chat-widget {
             position: fixed; bottom: 20px; right: 20px; width: 300px; 
             background: white; border-radius: 10px; box-shadow: 0 5px 25px rgba(0,0,0,0.2);
-            overflow: hidden; z-index: 1000; display: flex; flex-direction: column;
-            border: 1px solid #ddd;
+            overflow: hidden; z-index: 1000; display: flex; flex-direction: column; border: 1px solid #ddd;
         }
-        .chat-header {
-            background: var(--chat-color); color: white; padding: 10px; font-weight: bold; cursor: pointer;
-            display: flex; justify-content: space-between; align-items: center;
-        }
-        .chat-body {
-            padding: 15px; height: 300px; overflow-y: auto; display: none; background: #f9f9f9;
-        }
+        .chat-header { background: var(--chat-color); color: white; padding: 10px; font-weight: bold; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+        .chat-body { padding: 15px; height: 300px; overflow-y: auto; display: none; background: #f9f9f9; }
         .chat-open .chat-body { display: block; }
         .message { margin-bottom: 10px; padding: 8px 12px; border-radius: 15px; max-width: 80%; font-size: 14px; }
         .bot { background: #e1f5fe; color: #333; align-self: flex-start; border-bottom-left-radius: 2px; }
         .user { background: var(--chat-color); color: white; align-self: flex-end; margin-left: auto; border-bottom-right-radius: 2px; }
-        .chat-input-area {
-            border-top: 1px solid #eee; padding: 10px; display: none; background: white;
-        }
+        .chat-input-area { border-top: 1px solid #eee; padding: 10px; display: none; background: white; }
         .chat-open .chat-input-area { display: flex; }
         .chat-input-area input { flex: 1; padding: 5px; border: 1px solid #ddd; border-radius: 3px; }
         .chat-input-area button { margin-left: 5px; background: var(--chat-color); color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer; }
@@ -108,75 +155,97 @@
 </head>
 <body>
 
-    <div class="container">
-        <div class="language-selector">
-            <select id="langSelect" onchange="changeLanguage()">
-                <option value="fr">🇫🇷 Français</option>
-                <option value="en">🇬🇧 English</option>
-                <option value="ar">🇸🇦 العربية</option>
-                <option value="ka">🇬🇪 ქართული</option>
-                <option value="hy">🇦🇲 Հայերեն</option>
-            </select>
+    <div class="main-layout">
+        
+        <div style="width: 100%; padding: 0 10px;">
+            <div class="language-selector">
+                <select id="langSelect" onchange="changeLanguage()">
+                    <option value="fr">🇫🇷 Français</option>
+                    <option value="en">🇬🇧 English</option>
+                    <option value="ar">🇸🇦 العربية</option>
+                    <option value="ka">🇬🇪 ქართული</option>
+                    <option value="hy">🇦🇲 Հայերեն</option>
+                </select>
+            </div>
         </div>
 
-        <header>
-            <h1 id="t_title">Règlement Intérieur</h1>
-        </header>
-
-        <div class="contact-card">
-            <p id="t_contact_intro">📞 <strong>Bastien : 06 13 70 38 10</strong></p>
-            <p id="t_contact_sms" style="font-size: 0.9em;">(Privilégiez les SMS pour plus de facilité)</p>
-            <p id="t_emergency" style="font-weight: bold; color: #c0392b; margin-top: 10px;">En cas d'urgence ou besoin de soutien, n'hésitez pas à appeler.</p>
-        </div>
-
-        <div style="font-style: italic; font-size: 0.9em; color: #555; margin-bottom: 20px; border-left: 3px solid #ccc; padding-left: 10px;" id="t_flexibility">
-            ℹ️ Note : Toutes les règles peuvent être adaptées à chacun si besoin. Des autorisations spécifiques devront être demandées à la direction.
-        </div>
-
-        <section><h2 id="h_security">🛡️ SÉCURITÉ ET ACCÈS</h2><ul id="l_security"></ul></section>
-        <section><h2 id="h_hygiene">🧹 HYGIÈNE ET CHAMBRES</h2><ul id="l_hygiene"></ul></section>
-        <section><h2 id="h_common">🍽️ CUISINE & COMMUN</h2><ul id="l_common"></ul></section>
-        <section><h2 id="h_laundry">🧺 LINGE</h2><ul id="l_laundry"></ul></section>
-        <section><h2 id="h_community">🤝 VIE EN COMMUNAUTÉ</h2><ul id="l_community"></ul></section>
-        <div class="volunteer-box"><h3 id="h_volunteer">🤲 BÉNÉVOLAT</h3><p id="p_volunteer"></p></div>
-        <section><h2 id="h_departure">🚪 DÉPART</h2><ul id="l_departure"></ul></section>
-
-        <div style="background-color: #ffebee; border: 2px solid #e74c3c; color: #c0392b; padding: 20px; text-align: center; font-weight: bold; margin-top: 40px; border-radius: 5px; text-transform: uppercase;" id="t_warning">
-            Le non-respect de ces règles entraînera une expulsion définitive.
-        </div>
-
-        <div class="form-section">
-            <h2 id="f_title">✉️ Formulaire de Contact</h2>
-            <p id="f_desc">Signaler un dysfonctionnement, une demande particulière ou une information.</p>
+        <aside class="news-column">
+            <div class="card news-card">
+                <h3 id="news_header">📢 Actualités / News</h3>
+                
+                <div class="news-item">
+                    <div class="news-date">📅 <span id="news1_date">Dimanche 18 Décembre</span> <span class="badge-important">!</span></div>
+                    <div class="news-title" id="news1_title">Réunion d'information</div>
+                    <div class="news-body" id="news1_body">
+                        Une réunion importante aura lieu ce dimanche. La présence de tous les résidents est souhaitée.
+                    </div>
+                </div>
+                
+                </div>
             
-            <form action="https://formspree.io/f/mpqqwbwp" method="POST">
-                
-                <div class="form-group">
-                    <label id="f_name_l">Nom / Chambre</label>
-                    <input type="text" name="name" required>
+            <div class="manager-card">
+                <div class="manager-label" id="t_resp_label">RESPONSABLE / MANAGER</div>
+                <div class="manager-name">Bastien</div>
+                <div class="manager-phone">06 13 70 38 10</div>
+                <div class="manager-actions">
+                    <a href="tel:0613703810" class="action-btn btn-call">📞 <span id="btn_call_txt">Appeler</span></a>
+                    <a href="sms:0613703810" class="action-btn btn-sms">💬 SMS</a>
                 </div>
-                
-                <div class="form-group">
-                    <label id="f_type_l">Type de demande</label>
-                    <select name="type" class="form-control">
-                        <option value="info">Information</option>
-                        <option value="probleme">Dysfonctionnement / Problème</option>
-                        <option value="autre">Autre / Other</option>
-                    </select>
-                </div>
+            </div>
+            <div class="emergency-note" id="t_emergency">
+                En cas d'urgence ou besoin de soutien, n'hésitez pas à appeler. Privilégiez les SMS.
+            </div>
+        </aside>
 
-                <div class="form-group">
-                    <label id="f_msg_l">Message</label>
-                    <textarea name="message" rows="4" required></textarea>
-                </div>
+        <main class="content-column card">
+            <header>
+                <h1 id="t_title">Règlement Intérieur</h1>
+            </header>
 
-                <button type="submit" class="submit-btn" id="f_btn">Envoyer</button>
-            </form>
-        </div>
+            <div style="font-style: italic; font-size: 0.9em; color: #555; margin: 20px 0; border-left: 3px solid #ccc; padding-left: 10px;" id="t_flexibility">
+                ℹ️ Note : Toutes les règles peuvent être adaptées à chacun si besoin. Des autorisations spécifiques devront être demandées à la direction.
+            </div>
 
-        <div class="footer">
-            <p id="t_sign">La Direction</p>
-        </div>
+            <section><h2 id="h_security">🛡️ SÉCURITÉ ET ACCÈS</h2><ul id="l_security"></ul></section>
+            <section><h2 id="h_hygiene">🧹 HYGIÈNE ET CHAMBRES</h2><ul id="l_hygiene"></ul></section>
+            <section><h2 id="h_common">🍽️ CUISINE & COMMUN</h2><ul id="l_common"></ul></section>
+            <section><h2 id="h_laundry">🧺 LINGE</h2><ul id="l_laundry"></ul></section>
+            <section><h2 id="h_community">🤝 VIE EN COMMUNAUTÉ</h2><ul id="l_community"></ul></section>
+            <div class="volunteer-box"><h3 id="h_volunteer">🤲 BÉNÉVOLAT</h3><p id="p_volunteer"></p></div>
+            <section><h2 id="h_departure">🚪 DÉPART</h2><ul id="l_departure"></ul></section>
+
+            <div style="background-color: #ffebee; border: 2px solid #e74c3c; color: #c0392b; padding: 20px; text-align: center; font-weight: bold; margin-top: 40px; border-radius: 5px; text-transform: uppercase;" id="t_warning">
+                Le non-respect de ces règles entraînera une expulsion définitive.
+            </div>
+
+            <div class="form-section">
+                <h2 id="f_title">✉️ Formulaire de Contact</h2>
+                <p id="f_desc">Signaler un dysfonctionnement, une demande particulière ou une information.</p>
+                <form action="https://formspree.io/f/mpqqwbwp" method="POST">
+                    <div class="form-group">
+                        <label id="f_name_l">Nom / Chambre</label>
+                        <input type="text" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label id="f_type_l">Type de demande</label>
+                        <select name="type" class="form-control">
+                            <option value="info">Information</option>
+                            <option value="probleme">Dysfonctionnement / Problème</option>
+                            <option value="autre">Autre / Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label id="f_msg_l">Message</label>
+                        <textarea name="message" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn" id="f_btn">Envoyer</button>
+                </form>
+            </div>
+            
+            <div class="footer">
+                <p id="t_sign">La Direction</p>
+            </div>
+        </main>
     </div>
 
     <div class="chat-widget" id="chatWidget">
@@ -210,9 +279,9 @@
                 l_laundry: `<li>Draps changés le week-end.</li><li>Machine à laver : <strong>1x / semaine / pers</strong>.</li>`,
                 l_community: `<li>Silence dès <strong>23h00</strong>.</li><li>Politesse et respect du personnel.</li><li>Pas de vol.</li>`,
                 l_departure: `<li>Libération chambre <strong>11h00 Max</strong>.</li>`,
-                contact_intro: "📞 Bastien : 06 13 70 38 10",
-                contact_sms: "(Privilégiez les SMS pour plus de facilité)",
-                emergency: "En cas d'urgence ou besoin de soutien, n'hésitez pas à appeler.",
+                resp_label: "RESPONSABLE / MANAGER",
+                btn_call: "Appeler",
+                emergency: "En cas d'urgence ou besoin de soutien, n'hésitez pas à appeler. Privilégiez les SMS.",
                 flexibility: "ℹ️ Note : Toutes les règles peuvent être adaptées à chacun si besoin. Des autorisations spécifiques devront être demandées à la direction.",
                 volunteer_h: "🤲 BÉNÉVOLAT",
                 volunteer_p: "Si vous êtes volontaire (ménage, feuilles, poubelles, vaisselle), voir avec la direction.",
@@ -224,8 +293,13 @@
                 f_msg: "Message",
                 f_btn: "Envoyer",
                 sign: "La Direction",
+                // NEWS
+                news_header: "📢 Actualités",
+                news1_date: "Dimanche 18 Décembre",
+                news1_title: "Réunion d'information",
+                news1_body: "Une réunion importante aura lieu ce dimanche. La présence de tous les résidents est souhaitée.",
                 // Chatbot specific
-                chat_intro: "Je suis Virginus. Voici le code du portail : <strong>9876A</strong> (Exemple).<br>⚠️ Attention : Ce code changera régulièrement pour la sécurité.",
+                chat_intro: "Je suis Virginus. Voici le code du portail : <strong>98765</strong>.<br>⚠️ Attention : Ce code changera régulièrement pour la sécurité.",
                 chat_nick_reply: "Mon petit nom c'est <strong>mym_kim34</strong> 😉"
             },
             en: {
@@ -235,9 +309,9 @@
                 l_laundry: `<li>Sheets changed on weekends.</li><li>Washer: <strong>1x / week / person</strong>.</li>`,
                 l_community: `<li>Quiet time: <strong>23:00</strong>.</li><li>Respect staff and others. No stealing.</li>`,
                 l_departure: `<li>Checkout <strong>11:00 AM Max</strong>.</li>`,
-                contact_intro: "📞 Bastien: 06 13 70 38 10",
-                contact_sms: "(Please prefer SMS)",
-                emergency: "In case of emergency or need for support, do not hesitate to call.",
+                resp_label: "MANAGER",
+                btn_call: "Call",
+                emergency: "In case of emergency or need for support, do not hesitate to call. Please prefer SMS.",
                 flexibility: "ℹ️ Note: Rules can be adapted individually. Ask management for authorization.",
                 volunteer_h: "🤲 VOLUNTEERING",
                 volunteer_p: "Volunteers for cleaning/help are welcome. Ask management.",
@@ -249,7 +323,13 @@
                 f_msg: "Message",
                 f_btn: "Send",
                 sign: "The Management",
-                chat_intro: "I am Virginus. The gate code is: <strong>9876A</strong>.<br>⚠️ Warning: This code changes regularly for security.",
+                // NEWS
+                news_header: "📢 News Feed",
+                news1_date: "Sunday, December 18",
+                news1_title: "Information Meeting",
+                news1_body: "An important meeting will take place this Sunday. All residents are requested to attend.",
+                // Chatbot
+                chat_intro: "I am Virginus. The gate code is: <strong>98765</strong>.<br>⚠️ Warning: This code changes regularly for security.",
                 chat_nick_reply: "My nickname is <strong>mym_kim34</strong> 😉"
             },
             ar: {
@@ -259,9 +339,9 @@
                 l_laundry: `<li>تغيير الملاءات في العطلة.</li><li>الغسالة: <strong>مرة أسبوعياً للشخص</strong>.</li>`,
                 l_community: `<li>الهدوء من <strong>23:00</strong>.</li><li>احترام الموظفين وعدم السرقة.</li>`,
                 l_departure: `<li>مغادرة الغرفة <strong>11:00 صباحاً</strong>.</li>`,
-                contact_intro: "📞 باستيان: 0613703810",
-                contact_sms: "(يفضل الرسائل النصية)",
-                emergency: "في حالة الطوارئ أو الحاجة للدعم، لا تتردد في الاتصال.",
+                resp_label: "المسؤول / المدير",
+                btn_call: "اتصل",
+                emergency: "في حالات الطوارئ، لا تتردد في الاتصال. يفضل الرسائل النصية.",
                 flexibility: "ℹ️ ملاحظة: يمكن تعديل القواعد عند الضرورة بإذن الإدارة.",
                 volunteer_h: "🤲 التطوع",
                 volunteer_p: "للمساعدة في التنظيف، راجع الإدارة.",
@@ -273,7 +353,13 @@
                 f_msg: "الرسالة",
                 f_btn: "إرسال",
                 sign: "الإدارة",
-                chat_intro: "أنا فيرجينوس. رمز البوابة هو: <strong>9876A</strong>.<br>⚠️ تحذير: يتغير هذا الرمز بانتظام للأمان.",
+                // NEWS
+                news_header: "📢 الأخبار",
+                news1_date: "الأحد 18 ديسمبر",
+                news1_title: "اجتماع معلومات",
+                news1_body: "سيعقد اجتماع مهم هذا الأحد. يرجى من جميع السكان الحضور.",
+                // Chatbot
+                chat_intro: "أنا فيرجينوس. رمز البوابة هو: <strong>98765</strong>.<br>⚠️ تحذير: يتغير هذا الرمز بانتظام للأمان.",
                 chat_nick_reply: "لقبي هو <strong>mym_kim34</strong> 😉"
             },
             ka: {
@@ -283,9 +369,9 @@
                 l_laundry: `<li>თეთრეულის შეცვლა უქმეებზე.</li><li>რეცხვა: <strong>კვირაში 1-ხელ</strong>.</li>`,
                 l_community: `<li>სიჩუმე <strong>23:00</strong>-დან.</li><li>პერსონალის პატივისცემა.</li>`,
                 l_departure: `<li>გასვლა <strong>11:00-მდე</strong>.</li>`,
-                contact_intro: "📞 ბასტიენი: 06 13 70 38 10",
-                contact_sms: "(გთხოვთ მოგვწეროთ SMS)",
-                emergency: "საგანგებო სიტუაციის ან მხარდაჭერის საჭიროების შემთხვევაში, დარეკეთ.",
+                resp_label: "მენეჯერი",
+                btn_call: "დარეკვა",
+                emergency: "საგანგებო სიტუაციებში დარეკეთ. უმჯობესია SMS.",
                 flexibility: "ℹ️ შენიშვნა: წესების ადაპტირება შესაძლებელია ადმინისტრაციასთან შეთანხმებით.",
                 volunteer_h: "🤲 მოხალისეობა",
                 volunteer_p: "დასუფთავებაში დახმარებისთვის მიმართეთ ადმინისტრაციას.",
@@ -297,7 +383,13 @@
                 f_msg: "შეტყობინება",
                 f_btn: "გაგზავნა",
                 sign: "ადმინისტრაცია",
-                chat_intro: "მე ვარ ვირგინუსი. ჭიშკრის კოდია: <strong>9876A</strong>.<br>⚠️ ყურადღება: კოდი ხშირად იცვლება უსაფრთხოებისთვის.",
+                // NEWS
+                news_header: "📢 სიახლეები",
+                news1_date: "კვირა, 18 დეკემბერი",
+                news1_title: "საინფორმაციო შეხვედრა",
+                news1_body: "ამ კვირას გაიმართება მნიშვნელოვანი შეხვედრა. ყველა მაცხოვრებლის დასწრება სასურველია.",
+                // Chatbot
+                chat_intro: "მე ვარ ვირგინუსი. ჭიშკრის კოდია: <strong>98765</strong>.<br>⚠️ ყურადღება: კოდი ხშირად იცვლება უსაფრთხოებისთვის.",
                 chat_nick_reply: "ჩემი მეტსახელია <strong>mym_kim34</strong> 😉"
             },
             hy: {
@@ -307,9 +399,9 @@
                 l_laundry: `<li>Սավանների փոխարինում հանգստյան օրերին:</li><li>Լվացք՝ <strong>շաբաթը 1 անգամ</strong>:</li>`,
                 l_community: `<li>Լռություն <strong>23:00-ից</strong>:</li><li>Հարգել անձնակազմին:</li>`,
                 l_departure: `<li>Ազատել սենյակը <strong>11:00-ին</strong>:</li>`,
-                contact_intro: "📞 Բաստիեն՝ 06 13 70 38 10",
-                contact_sms: "(Խնդրում ենք գրել SMS)",
-                emergency: "Արտակարգ իրավիճակի կամ աջակցության դեպքում զանգահարեք:",
+                resp_label: "ՂԵԿԱՎԱՐ / MANAGER",
+                btn_call: "Զանգահարել",
+                emergency: "Արտակարգ դեպքերում զանգահարեք: Նախընտրելի է SMS:",
                 flexibility: "ℹ️ Նշում. Կանոնները կարող են փոփոխվել ղեկավարության թույլտվությամբ:",
                 volunteer_h: "🤲 ԿԱՄԱՎՈՐՈՒԹՅՈՒՆ",
                 volunteer_p: "Մաքրության հարցում օգնելու համար դիմեք ղեկավարությանը:",
@@ -321,7 +413,13 @@
                 f_msg: "Հաղորդագրություն",
                 f_btn: "Ուղարկել",
                 sign: "Տնօրինություն",
-                chat_intro: "Ես Վիրգինուսն եմ: Դարպասի կոդն է՝ <strong>9876A</strong>:<br>⚠️ Ուշադրություն. Կոդը հաճախակի փոխվում է անվտանգության համար:",
+                // NEWS
+                news_header: "📢 Նորություններ",
+                news1_date: "Կիրակի, 18 Դեկտեմբեր",
+                news1_title: "Տեղեկատվական հանդիպում",
+                news1_body: "Այս կիրակի տեղի կունենա կարևոր հանդիպում: Բոլոր բնակիչների ներկայությունը ցանկալի է:",
+                // Chatbot
+                chat_intro: "Ես Վիրգինուսն եմ: Դարպասի կոդն է՝ <strong>98765</strong>:<br>⚠️ Ուշադրություն. Կոդը հաճախակի փոխվում է անվտանգության համար:",
                 chat_nick_reply: "Իմ մականունն է <strong>mym_kim34</strong> 😉"
             }
         };
@@ -344,9 +442,10 @@
             document.getElementById('l_community').innerHTML = data.l_community;
             document.getElementById('l_departure').innerHTML = data.l_departure;
             
-            document.getElementById('t_contact_intro').innerHTML = `<strong>${data.contact_intro}</strong>`;
-            document.getElementById('t_contact_sms').textContent = data.contact_sms;
+            document.getElementById('t_resp_label').textContent = data.resp_label;
+            document.getElementById('btn_call_txt').textContent = data.btn_call;
             document.getElementById('t_emergency').textContent = data.emergency;
+            
             document.getElementById('t_flexibility').textContent = data.flexibility;
             document.getElementById('h_volunteer').textContent = data.volunteer_h;
             document.getElementById('p_volunteer').textContent = data.volunteer_p;
@@ -360,6 +459,12 @@
             document.getElementById('f_type_l').textContent = data.f_type;
             document.getElementById('f_msg_l').textContent = data.f_msg;
             document.getElementById('f_btn').textContent = data.f_btn;
+
+            // News Updates
+            document.getElementById('news_header').textContent = data.news_header;
+            document.getElementById('news1_date').textContent = data.news1_date;
+            document.getElementById('news1_title').textContent = data.news1_title;
+            document.getElementById('news1_body').textContent = data.news1_body;
         }
 
         // --- CHATBOT LOGIC ---
