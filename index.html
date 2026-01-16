@@ -127,7 +127,8 @@
                 <select id="langSelect" onchange="changeLanguage()">
                     <option value="fr">🇫🇷 Français</option>
                     <option value="en">🇬🇧 English</option>
-                    <option value="ru">🇷🇺 Русский</option> <option value="ar">🇸🇦 العربية</option>
+                    <option value="ru">🇷🇺 Русский</option>
+                    <option value="ar">🇸🇦 العربية</option>
                     <option value="ka">🇬🇪 ქართული</option>
                     <option value="hy">🇦🇲 Հայերեն</option>
                 </select>
@@ -193,6 +194,12 @@
                 <h2 id="f_title">✉️ Formulaire de Contact</h2>
                 <p id="f_desc">Signaler un dysfonctionnement, une demande particulière ou une information.</p>
                 <form action="https://formspree.io/f/mpqqwbwp" method="POST">
+                    
+                    <div class="form-group">
+                        <label id="f_email_l">Votre Email</label>
+                        <input type="email" name="email" required placeholder="exemple@email.com">
+                    </div>
+
                     <div class="form-group">
                         <label id="f_name_l">Nom / Chambre</label>
                         <input type="text" name="name" required>
@@ -278,12 +285,15 @@
                 volunteer_h: "🤲 BÉNÉVOLAT",
                 volunteer_p: "Vous pouvez de façon volontaire participer à l'entretien des parties communes avec accord du responsable.",
                 warning: "LE NON-RESPECT DE CES RÈGLES ENTRAÎNERA UNE EXPULSION DÉFINITIVE DE L'ÉTABLISSEMENT, SANS PRÉAVIS NI REMBOURSEMENT.",
+                
                 f_title: "✉️ Formulaire de Contact",
                 f_desc: "Signaler un dysfonctionnement, une demande ou une info.",
+                f_email_l: "Votre Email",
                 f_name: "Nom / Chambre",
                 f_type: "Type de demande",
                 f_msg: "Message",
                 f_btn: "Envoyer",
+                
                 sign: "La Direction",
                 footer_quote: "Créé avec empathie et foi pour le confort et la sécurité de tous.",
                 news_header: "📢 Actualités",
@@ -326,12 +336,15 @@
                 volunteer_h: "🤲 VOLUNTEERING",
                 volunteer_p: "You can voluntarily participate in the maintenance of common areas with the manager's agreement.",
                 warning: "FAILURE TO RESPECT THESE RULES WILL RESULT IN PERMANENT EXPULSION FROM THE ESTABLISHMENT, WITHOUT NOTICE OR REFUND.",
+                
                 f_title: "✉️ Contact Form",
                 f_desc: "Report an issue, request info or help.",
+                f_email_l: "Your Email",
                 f_name: "Name / Room",
                 f_type: "Request Type",
                 f_msg: "Message",
                 f_btn: "Send",
+                
                 sign: "The Management",
                 footer_quote: "Created with empathy and faith for the comfort and safety of all.",
                 news_header: "📢 News Feed",
@@ -374,12 +387,15 @@
                 volunteer_h: "🤲 ВОЛОНТЕРСТВО",
                 volunteer_p: "Вы можете добровольно участвовать в содержании мест общего пользования с согласия управляющего.",
                 warning: "НЕСОБЛЮДЕНИЕ ЭТИХ ПРАВИЛ ВЛЕЧЕТ ЗА СОБОЙ ОКОНЧАТЕЛЬНОЕ ВЫСЕЛЕНИЕ ИЗ ЗАВЕДЕНИЯ, БЕЗ ПРЕДУПРЕЖДЕНИЯ И ВОЗВРАТА СРЕДСТВ.",
+                
                 f_title: "✉️ Контактная форма",
                 f_desc: "Сообщить о проблеме или запросить информацию.",
+                f_email_l: "Ваш Email",
                 f_name: "Имя / Комната",
                 f_type: "Тип запроса",
                 f_msg: "Сообщение",
                 f_btn: "Отправить",
+                
                 sign: "Администрация",
                 footer_quote: "Создано с эмпатией и верой для комфорта и безопасности всех.",
                 news_header: "📢 Новости",
@@ -422,12 +438,15 @@
                 volunteer_h: "🤲 التطوع",
                 volunteer_p: "يمكنك المشاركة طواعية في صيانة المناطق المشتركة بموافقة المدير.",
                 warning: "عدم الالتزام بهذه القواعد سيؤدي إلى الطرد النهائي من المؤسسة، دون إشعار أو استرداد للمال.",
+                
                 f_title: "✉️ نموذج الاتصال",
                 f_desc: "للإبلاغ عن مشكلة أو طلب معلومات.",
+                f_email_l: "بريدك الالكتروني",
                 f_name: "الاسم / الغرفة",
                 f_type: "نوع الطلب",
                 f_msg: "الرسالة",
                 f_btn: "إرسال",
+                
                 sign: "الإدارة",
                 footer_quote: "تم إنشاؤه بتعاطف وإيمان لراحة وسلامة الجميع.",
                 news_header: "📢 الأخبار",
@@ -470,12 +489,15 @@
                 volunteer_h: "🤲 მოხალისეობა",
                 volunteer_p: "თქვენ შეგიძლიათ ნებაყოფლობით მიიღოთ მონაწილეობა საერთო ფართების მოვლა-პატრონობაში მენეჯერის თანხმობით.",
                 warning: "ამ წესების დარღვევა გამოიწვევს დაწესებულებიდან საბოლოო გაძევებას, გაფრთხილებისა და ანაზღაურების გარეშე.",
+                
                 f_title: "✉️ საკონტაქტო ფორმა",
                 f_desc: "პრობლემის შეტყობინება ან ინფორმაცია.",
+                f_email_l: "თქვენი ელ. ფოსტა",
                 f_name: "სახელი / ოთახი",
                 f_type: "მოთხოვნის ტიპი",
                 f_msg: "შეტყობინება",
                 f_btn: "გაგზავნა",
+                
                 sign: "ადმინისტრაცია",
                 footer_quote: "შექმნილია თანაგრძნობითა და რწმენით ყველას კომფორტისა და უსაფრთხოებისთვის.",
                 news_header: "📢 სიახლეები",
@@ -518,12 +540,15 @@
                 volunteer_h: "🤲 ԿԱՄԱՎՈՐՈՒԹՅՈՒՆ",
                 volunteer_p: "Դուք կարող եք կամավոր մասնակցել ընդհանուր տարածքների պահպանմանը ղեկավարի համաձայնությամբ:",
                 warning: "ԱՅՍ ԿԱՆՈՆՆԵՐԻ ԽԱԽՏՈՒՄԸ ԿՀԱՆԳԵՑՆԻ ՀԱՍՏԱՏՈՒԹՅՈՒՆԻՑ ՎԵՐՋՆԱԿԱՆ ՎՏԱՐՄԱՆ, ԱՌԱՆՑ ԾԱՆՈՒՑՄԱՆ ԿԱՄ ՓՈԽՀԱՏՈՒՑՄԱՆ:",
+                
                 f_title: "✉️ Կապի ձև",
                 f_desc: "Խնդրի մասին հայտնել կամ տեղեկություն:",
+                f_email_l: "Ձեր էլ. փոստը",
                 f_name: "Անուն / Սենյակ",
                 f_type: "Հարցման տեսակը",
                 f_msg: "Հաղորդագրություն",
                 f_btn: "Ուղարկել",
+                
                 sign: "Տնօրինություն",
                 footer_quote: "Ստեղծվել է կարեկցանքով և հավատով` բոլորի հարմարավետության և անվտանգության համար:",
                 news_header: "📢 Նորություններ",
@@ -573,14 +598,16 @@
             
             document.getElementById('t_flexibility').textContent = data.flexibility;
             document.getElementById('h_volunteer').textContent = data.volunteer_h;
-            document.getElementById('p_volunteer').textContent = data.volunteer_p; // Nouvelle phrase bénévole
+            document.getElementById('p_volunteer').textContent = data.volunteer_p;
             document.getElementById('t_warning').textContent = data.warning;
+            
             document.getElementById('t_sign').textContent = data.sign;
-            document.getElementById('t_footer_quote').textContent = data.footer_quote; // Footer ajouté
+            document.getElementById('t_footer_quote').textContent = data.footer_quote;
 
             // Form Updates
             document.getElementById('f_title').textContent = data.f_title;
             document.getElementById('f_desc').textContent = data.f_desc;
+            document.getElementById('f_email_l').textContent = data.f_email_l; // New Email Label
             document.getElementById('f_name_l').textContent = data.f_name;
             document.getElementById('f_type_l').textContent = data.f_type;
             document.getElementById('f_msg_l').textContent = data.f_msg;
@@ -590,7 +617,7 @@
             document.getElementById('news_header').textContent = data.news_header;
             document.getElementById('news1_date').textContent = data.news1_date;
             document.getElementById('news1_title').textContent = data.news1_title;
-            document.getElementById('news1_body').innerHTML = data.news1_body; // innerHTML pour le <br>
+            document.getElementById('news1_body').innerHTML = data.news1_body;
         }
 
         // --- CHATBOT LOGIC ---
