@@ -10,7 +10,6 @@
             --accent-color: #e74c3c;
             --bg-color: #f4f7f6;
             --card-bg: #ffffff;
-            --positive-color: #27ae60;
             --chat-color: #3498db;
             --highlight-gold: #f1c40f;
         }
@@ -87,7 +86,7 @@
         .manager-actions { display: flex; gap: 10px; justify-content: center; margin-top: 15px; }
         .action-btn { flex: 1; max-width: 150px; padding: 10px; border-radius: 5px; text-decoration: none; font-weight: bold; text-align: center; transition: transform 0.2s; }
         .btn-call { background: white; color: var(--primary-color); }
-        .btn-sms { background: var(--positive-color); color: white; }
+        .btn-sms { background: #27ae60; color: white; }
         .action-btn:active { transform: scale(0.95); }
         .emergency-note { background: #ffebee; color: #c0392b; padding: 10px; border-radius: 5px; font-size: 0.9em; text-align: center; font-weight: bold; margin-top: 10px; }
 
@@ -111,10 +110,12 @@
         .chat-input-area input { flex: 1; padding: 5px; border: 1px solid #ddd; border-radius: 3px; }
         .chat-input-area button { margin-left: 5px; background: var(--chat-color); color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer; }
         
-        .volunteer-box { background-color: #e8f8f5; border: 2px solid var(--positive-color); padding: 20px; border-radius: 5px; margin-top: 30px; }
         .footer { text-align: center; margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee; font-size: 0.9em; color: #777; }
         .footer-quote { font-style: italic; color: var(--primary-color); margin-top: 10px; font-weight: 500; }
         
+        /* Style discret pour la participation */
+        .participation-note { margin-top: 30px; padding: 15px; color: #555; font-size: 0.9em; border-left: 3px solid #ccc; background: #fdfdfd; }
+
         @media (max-width: 600px) { .container { padding: 20px; } .chat-widget { width: 90%; right: 5%; } }
     </style>
 </head>
@@ -179,9 +180,9 @@
             <section><h2 id="h_laundry">🧺 4. LINGE ET BUANDERIE</h2><ul id="l_laundry"></ul></section>
             <section><h2 id="h_community">🤝 5. VIE EN COMMUNAUTÉ</h2><ul id="l_community"></ul></section>
             
-            <div class="volunteer-box">
-                <h3 id="h_volunteer">🤲 BÉNÉVOLAT</h3>
-                <p id="p_volunteer">Vous pouvez de façon volontaire participer à l'entretien des parties communes avec accord du responsable.</p>
+            <div class="participation-note">
+                <strong id="h_volunteer">Participation :</strong> 
+                <span id="p_volunteer">Pour ceux qui le souhaitent, il est possible de participer à la vie du lieu sur simple demande.</span>
             </div>
             
             <section><h2 id="h_departure">🚪 6. DÉPART</h2><ul id="l_departure"></ul></section>
@@ -233,7 +234,7 @@
             <span>▼</span>
         </div>
         <div class="chat-body" id="chatBody">
-            <div class="message bot">Bonjour ! Veuillez sélectionner votre langue pour obtenir le code du portail.<br>Hello! Please select your language to get the gate code.</div>
+            <div class="message bot">Bonjour ! Sélectionnez une langue pour voir les codes (Portail & Wifi).</div>
             <div style="text-align: center; margin-top: 10px;">
                 <button onclick="startChat('fr')" style="margin:2px;">Français</button>
                 <button onclick="startChat('en')" style="margin:2px;">English</button>
@@ -282,8 +283,11 @@
                 btn_call: "Appeler",
                 emergency: "En cas d'urgence ou besoin de soutien, n'hésitez pas à appeler. Privilégiez les SMS.",
                 flexibility: "ℹ️ Note : Toutes les règles peuvent être adaptées à chacun si besoin. Des autorisations spécifiques devront être demandées à la direction.",
-                volunteer_h: "🤲 BÉNÉVOLAT",
-                volunteer_p: "Vous pouvez de façon volontaire participer à l'entretien des parties communes avec accord du responsable.",
+                
+                // PARTIE PARTICIPATION DISCRÈTE
+                h_volunteer: "Participation :",
+                p_volunteer: "Pour ceux qui le souhaitent, il est possible de participer à la vie du lieu sur simple demande.",
+                
                 warning: "LE NON-RESPECT DE CES RÈGLES ENTRAÎNERA UNE EXPULSION DÉFINITIVE DE L'ÉTABLISSEMENT, SANS PRÉAVIS NI REMBOURSEMENT.",
                 
                 f_title: "✉️ Formulaire de Contact",
@@ -300,7 +304,7 @@
                 news1_date: "Dimanche 18 Décembre",
                 news1_title: "Réunion d'information",
                 news1_body: "Une réunion importante aura lieu ce dimanche. La présence de tous les résidents est souhaitée.<br><strong>Lieu : Cuisine (11h30)</strong>",
-                chat_intro: "Je suis <strong>Saint-Eloi</strong>. Voici le code du portail : <strong>98765</strong>.<br>⚠️ Attention : Ce code changera régulièrement pour la sécurité.",
+                chat_intro: "Je suis <strong>Saint-Eloi</strong>.<br>🚪 Code Portail : <strong>98765</strong><br>📶 Wi-Fi (livebox-4988) : <strong>mayleen34090</strong>",
                 chat_nick_reply: "Mon petit nom c'est <strong>mym_kim34</strong> 😉"
             },
             en: {
@@ -333,8 +337,10 @@
                 btn_call: "Call",
                 emergency: "In case of emergency or need for support, do not hesitate to call. Please prefer SMS.",
                 flexibility: "ℹ️ Note: Rules can be adapted individually. Ask management for authorization.",
-                volunteer_h: "🤲 VOLUNTEERING",
-                volunteer_p: "You can voluntarily participate in the maintenance of common areas with the manager's agreement.",
+                
+                h_volunteer: "Participation:",
+                p_volunteer: "For those who wish, it is possible to participate in the life of the place upon simple request.",
+                
                 warning: "FAILURE TO RESPECT THESE RULES WILL RESULT IN PERMANENT EXPULSION FROM THE ESTABLISHMENT, WITHOUT NOTICE OR REFUND.",
                 
                 f_title: "✉️ Contact Form",
@@ -351,7 +357,7 @@
                 news1_date: "Sunday, December 18",
                 news1_title: "Information Meeting",
                 news1_body: "An important meeting will take place this Sunday. All residents are requested to attend.<br><strong>Location: Kitchen (11:30 AM)</strong>",
-                chat_intro: "I am <strong>Saint-Eloi</strong>. The gate code is: <strong>98765</strong>.<br>⚠️ Warning: This code changes regularly for security.",
+                chat_intro: "I am <strong>Saint-Eloi</strong>.<br>🚪 Gate Code: <strong>98765</strong><br>📶 Wi-Fi (livebox-4988): <strong>mayleen34090</strong>",
                 chat_nick_reply: "My nickname is <strong>mym_kim34</strong> 😉"
             },
             ru: {
@@ -384,8 +390,10 @@
                 btn_call: "Позвонить",
                 emergency: "В экстренных случаях звоните. Предпочтительно СМС.",
                 flexibility: "ℹ️ Примечание: Правила могут быть адаптированы. Спрашивайте разрешение у администрации.",
-                volunteer_h: "🤲 ВОЛОНТЕРСТВО",
-                volunteer_p: "Вы можете добровольно участвовать в содержании мест общего пользования с согласия управляющего.",
+                
+                h_volunteer: "Участие:",
+                p_volunteer: "Для желающих возможно участие в жизни заведения по простому запросу.",
+                
                 warning: "НЕСОБЛЮДЕНИЕ ЭТИХ ПРАВИЛ ВЛЕЧЕТ ЗА СОБОЙ ОКОНЧАТЕЛЬНОЕ ВЫСЕЛЕНИЕ ИЗ ЗАВЕДЕНИЯ, БЕЗ ПРЕДУПРЕЖДЕНИЯ И ВОЗВРАТА СРЕДСТВ.",
                 
                 f_title: "✉️ Контактная форма",
@@ -402,7 +410,7 @@
                 news1_date: "Воскресенье, 18 декабря",
                 news1_title: "Информационное собрание",
                 news1_body: "Важное собрание состоится в это воскресенье. Присутствие всех жильцов желательно.<br><strong>Место: Кухня (11:30)</strong>",
-                chat_intro: "Я <strong>Сент-Элуа (Saint-Eloi)</strong>. Код от ворот: <strong>98765</strong>.<br>⚠️ Внимание: Код регулярно меняется в целях безопасности.",
+                chat_intro: "Я <strong>Сент-Элуа (Saint-Eloi)</strong>.<br>🚪 Код: <strong>98765</strong><br>📶 Wi-Fi (livebox-4988): <strong>mayleen34090</strong>",
                 chat_nick_reply: "Меня зовут <strong>mym_kim34</strong> 😉"
             },
             ar: {
@@ -435,8 +443,10 @@
                 btn_call: "اتصل",
                 emergency: "في حالات الطوارئ، لا تتردد في الاتصال. يفضل الرسائل النصية.",
                 flexibility: "ℹ️ ملاحظة: يمكن تعديل القواعد عند الضرورة بإذن الإدارة.",
-                volunteer_h: "🤲 التطوع",
-                volunteer_p: "يمكنك المشاركة طواعية في صيانة المناطق المشتركة بموافقة المدير.",
+                
+                h_volunteer: "المشاركة:",
+                p_volunteer: "لمن يرغب، يمكن المشاركة في حياة المكان عند الطلب البسيط.",
+                
                 warning: "عدم الالتزام بهذه القواعد سيؤدي إلى الطرد النهائي من المؤسسة، دون إشعار أو استرداد للمال.",
                 
                 f_title: "✉️ نموذج الاتصال",
@@ -453,7 +463,7 @@
                 news1_date: "الأحد 18 ديسمبر",
                 news1_title: "اجتماع معلومات",
                 news1_body: "سيعقد اجتماع مهم هذا الأحد. يرجى من جميع السكان الحضور.<br><strong>الموقع: المطبخ (11:30)</strong>",
-                chat_intro: "أنا <strong>سانت إيلوي (Saint-Eloi)</strong>. رمز البوابة هو: <strong>98765</strong>.<br>⚠️ تحذير: يتغير هذا الرمز بانتظام للأمان.",
+                chat_intro: "أنا <strong>سانت إيلوي (Saint-Eloi)</strong>.<br>🚪 رمز البوابة: <strong>98765</strong><br>📶 واي فاي (livebox-4988): <strong>mayleen34090</strong>",
                 chat_nick_reply: "لقبي هو <strong>mym_kim34</strong> 😉"
             },
             ka: {
@@ -486,8 +496,10 @@
                 btn_call: "დარეკვა",
                 emergency: "საგანგებო სიტუაციებში დარეკეთ. უმჯობესია SMS.",
                 flexibility: "ℹ️ შენიშვნა: წესების ადაპტირება შესაძლებელია ადმინისტრაციასთან შეთანხმებით.",
-                volunteer_h: "🤲 მოხალისეობა",
-                volunteer_p: "თქვენ შეგიძლიათ ნებაყოფლობით მიიღოთ მონაწილეობა საერთო ფართების მოვლა-პატრონობაში მენეჯერის თანხმობით.",
+                
+                h_volunteer: "მონაწილეობა:",
+                p_volunteer: "მსურველებს შეუძლიათ მონაწილეობა მიიღონ ადგილობრივ ცხოვრებაში მარტივი მოთხოვნის საფუძველზე.",
+                
                 warning: "ამ წესების დარღვევა გამოიწვევს დაწესებულებიდან საბოლოო გაძევებას, გაფრთხილებისა და ანაზღაურების გარეშე.",
                 
                 f_title: "✉️ საკონტაქტო ფორმა",
@@ -504,7 +516,7 @@
                 news1_date: "კვირა, 18 დეკემბერი",
                 news1_title: "საინფორმაციო შეხვედრა",
                 news1_body: "ამ კვირას გაიმართება მნიშვნელოვანი შეხვედრა. ყველა მაცხოვრებლის დასწრება სასურველია.<br><strong>ადგილი: სამზარეულო (11:30)</strong>",
-                chat_intro: "მე ვარ <strong>სენტ-ელოი (Saint-Eloi)</strong>. ჭიშკრის კოდია: <strong>98765</strong>.<br>⚠️ ყურადღება: კოდი ხშირად იცვლება უსაფრთხოებისთვის.",
+                chat_intro: "მე ვარ <strong>სენტ-ელოი</strong>.<br>🚪 კოდი: <strong>98765</strong><br>📶 Wi-Fi (livebox-4988): <strong>mayleen34090</strong>",
                 chat_nick_reply: "ჩემი მეტსახელია <strong>mym_kim34</strong> 😉"
             },
             hy: {
@@ -537,8 +549,10 @@
                 btn_call: "Զանգահարել",
                 emergency: "Արտակարգ դեպքերում զանգահարեք: Նախընտրելի է SMS:",
                 flexibility: "ℹ️ Նշում. Կանոնները կարող են փոփոխվել ղեկավարության թույլտվությամբ:",
-                volunteer_h: "🤲 ԿԱՄԱՎՈՐՈՒԹՅՈՒՆ",
-                volunteer_p: "Դուք կարող եք կամավոր մասնակցել ընդհանուր տարածքների պահպանմանը ղեկավարի համաձայնությամբ:",
+                
+                h_volunteer: "Մասնակցություն:",
+                p_volunteer: "Ցանկացողները կարող են մասնակցել տեղի կյանքին՝ պարզ խնդրանքով։",
+                
                 warning: "ԱՅՍ ԿԱՆՈՆՆԵՐԻ ԽԱԽՏՈՒՄԸ ԿՀԱՆԳԵՑՆԻ ՀԱՍՏԱՏՈՒԹՅՈՒՆԻՑ ՎԵՐՋՆԱԿԱՆ ՎՏԱՐՄԱՆ, ԱՌԱՆՑ ԾԱՆՈՒՑՄԱՆ ԿԱՄ ՓՈԽՀԱՏՈՒՑՄԱՆ:",
                 
                 f_title: "✉️ Կապի ձև",
@@ -555,7 +569,7 @@
                 news1_date: "Կիրակի, 18 Դեկտեմբեր",
                 news1_title: "Տեղեկատվական հանդիպում",
                 news1_body: "Այս կիրակի տեղի կունենա կարևոր հանդիպում: Բոլոր բնակիչների ներկայությունը ցանկալի է:<br><strong>Վայրը` Խոհանոց (11:30)</strong>",
-                chat_intro: "Ես <strong>Սենտ-Էլոին (Saint-Eloi)</strong> եմ: Դարպասի կոդն է՝ <strong>98765</strong>:<br>⚠️ Ուշադրություն. Կոդը հաճախակի փոխվում է անվտանգության համար:",
+                chat_intro: "Ես <strong>Սենտ-Էլոին (Saint-Eloi)</strong> եմ:<br>🚪 Կոդ: <strong>98765</strong><br>📶 Wi-Fi (livebox-4988): <strong>mayleen34090</strong>",
                 chat_nick_reply: "Իմ մականունն է <strong>mym_kim34</strong> 😉"
             }
         };
@@ -597,8 +611,11 @@
             document.getElementById('t_emergency').textContent = data.emergency;
             
             document.getElementById('t_flexibility').textContent = data.flexibility;
-            document.getElementById('h_volunteer').textContent = data.volunteer_h;
-            document.getElementById('p_volunteer').textContent = data.volunteer_p;
+            
+            // Partie Participation
+            document.getElementById('h_volunteer').textContent = data.h_volunteer;
+            document.getElementById('p_volunteer').textContent = data.p_volunteer;
+            
             document.getElementById('t_warning').textContent = data.warning;
             
             document.getElementById('t_sign').textContent = data.sign;
@@ -607,7 +624,7 @@
             // Form Updates
             document.getElementById('f_title').textContent = data.f_title;
             document.getElementById('f_desc').textContent = data.f_desc;
-            document.getElementById('f_email_l').textContent = data.f_email_l; // New Email Label
+            document.getElementById('f_email_l').textContent = data.f_email_l;
             document.getElementById('f_name_l').textContent = data.f_name;
             document.getElementById('f_type_l').textContent = data.f_type;
             document.getElementById('f_msg_l').textContent = data.f_msg;
@@ -632,7 +649,7 @@
             const data = translations[lang];
             const chatBody = document.getElementById('chatBody');
             
-            // Add Intro (Saint-Eloi)
+            // Add Intro (Saint-Eloi with Codes)
             const botMsg = document.createElement('div');
             botMsg.className = 'message bot';
             botMsg.innerHTML = data.chat_intro;
@@ -668,11 +685,9 @@
                     botMsg.innerHTML = translations[currentLang].chat_nick_reply;
                 } else {
                     // Réponse générique
-                    const code = "98765";
-                    if (currentLang === 'fr') botMsg.innerHTML = "Mon nom est Saint-Eloi. Le code est " + code + ".";
-                    else if (currentLang === 'en') botMsg.innerHTML = "My name is Saint-Eloi. The code is " + code + ".";
-                    else if (currentLang === 'ru') botMsg.innerHTML = "Меня зовут Сент-Элуа. Код: " + code + ".";
-                    else botMsg.innerHTML = "Code: " + code;
+                    if (currentLang === 'fr') botMsg.innerHTML = "Je n'ai pas compris. Besoin des codes ? Regardez mon premier message.";
+                    else if (currentLang === 'en') botMsg.innerHTML = "I didn't understand. Need codes? Look at my first message.";
+                    else botMsg.innerHTML = "...";
                 }
                 
                 chatBody.appendChild(botMsg);
