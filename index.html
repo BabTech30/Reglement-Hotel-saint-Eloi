@@ -10,8 +10,11 @@
             --accent-color: #e74c3c;
             --bg-color: #f4f7f6;
             --card-bg: #ffffff;
+            --positive-color: #27ae60;
             --chat-color: #3498db;
             --highlight-gold: #f1c40f;
+            --important-bg: #e8f6f3; /* Vert très clair pour l'aide */
+            --important-border: #1abc9c;
         }
 
         body {
@@ -47,6 +50,13 @@
             margin-bottom: 20px;
         }
 
+        /* Important Info Card */
+        .important-card {
+            border-left: 5px solid var(--important-border);
+            background-color: var(--important-bg);
+        }
+        .important-title { color: #16a085; font-weight: bold; font-size: 1.1em; margin-bottom: 10px; display: flex; align-items: center; }
+        
         /* News Styles */
         .news-card { border-top: 5px solid #3498db; }
         .news-item { border-bottom: 1px solid #eee; padding-bottom: 15px; margin-bottom: 15px; }
@@ -54,7 +64,6 @@
         .news-date { font-size: 0.85em; color: #7f8c8d; font-weight: bold; }
         .news-title { font-size: 1.1em; color: #2980b9; margin: 5px 0; font-weight: bold; }
         .news-body { font-size: 0.95em; }
-        .badge-important { background-color: var(--accent-color); color: white; padding: 2px 6px; border-radius: 4px; font-size: 0.7em; vertical-align: middle; margin-left: 5px; }
 
         /* General Styles */
         .language-selector { text-align: right; margin-bottom: 20px; }
@@ -69,7 +78,8 @@
         body.rtl h2 { border-left: none; border-right: 5px solid var(--primary-color); padding-left: 0; padding-right: 10px; }
         body.rtl li { padding-left: 0; padding-right: 25px; }
         body.rtl li::before { left: auto; right: 5px; }
-        
+        body.rtl .important-card { border-left: none; border-right: 5px solid var(--important-border); }
+
         ul { list-style-type: none; padding: 0; }
         li { margin-bottom: 15px; padding-left: 25px; position: relative; } 
         li::before { content: "•"; color: var(--primary-color); font-weight: bold; position: absolute; left: 5px; }
@@ -113,7 +123,6 @@
         .footer { text-align: center; margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee; font-size: 0.9em; color: #777; }
         .footer-quote { font-style: italic; color: var(--primary-color); margin-top: 10px; font-weight: 500; }
         
-        /* Style discret pour la participation */
         .participation-note { margin-top: 30px; padding: 15px; color: #555; font-size: 0.9em; border-left: 3px solid #ccc; background: #fdfdfd; }
 
         @media (max-width: 600px) { .container { padding: 20px; } .chat-widget { width: 90%; right: 5%; } }
@@ -137,17 +146,43 @@
         </div>
 
         <aside class="news-column">
+            
+            <div class="card important-card">
+                <div class="important-title">🤝 <span id="imp_header">AIDE ADMINISTRATIVE</span></div>
+                <div id="imp_body">
+                    On peut vous aider pour faire des CV ou la rédaction de courriers divers. Bastien vous propose ses services de façon bénévole.
+                    <br><br>
+                    <strong>Envoyez un SMS</strong> avec votre demande pour qu'il puisse s'en occuper (avec ou sans vous).
+                </div>
+            </div>
+
             <div class="card news-card">
-                <h3 id="news_header">📢 Actualités / News</h3>
+                <h3 id="news_header">📢 Fil d'Actualité</h3>
                 
                 <div class="news-item">
-                    <div class="news-date">📅 <span id="news1_date">Dimanche 18 Décembre</span> <span class="badge-important">!</span></div>
-                    <div class="news-title" id="news1_title">Réunion d'information</div>
+                    <div class="news-date">📅 <span id="news1_date">Information</span></div>
+                    <div class="news-title" id="news1_title">Confort & Gourmandises</div>
                     <div class="news-body" id="news1_body">
-                        Une réunion importante aura lieu ce dimanche. La présence de tous les résidents est souhaitée.
-                        <br><strong>Lieu : Cuisine (11h30)</strong>
+                        Sur la table du Hall d'entrée, des bouteilles d'eau, et parfois des gâteaux, crêpes, biscuits ou fruits sont installés.
+                        <br><br>
+                        <strong>Servez-vous !</strong> Cela est fait pour votre confort et offert avec plaisir.
+                        <br><br>
+                        <em>N'oubliez pas d'utiliser le formulaire du site pour vos demandes, il est là pour ça !</em>
                     </div>
                 </div>
+
+                <div class="news-item">
+                    <div class="news-date">📅 <span id="news2_date">Janvier 2026</span></div>
+                    <div class="news-title" id="news2_title">Message de la direction</div>
+                    <div class="news-body" id="news2_body">
+                        Je remercie <strong>Armer et Abésalom</strong> pour leur présence à la réunion.
+                        <br><br>
+                        Je ne vous en veux pas pour votre absence, et je suis content que certaines règles commencent à être appliquées.
+                        <br><br>
+                        Bon début d'année, et que Dieu veille sur chacun d'entre nous 🙏.
+                    </div>
+                </div>
+
             </div>
             
             <div class="manager-card">
@@ -283,11 +318,8 @@
                 btn_call: "Appeler",
                 emergency: "En cas d'urgence ou besoin de soutien, n'hésitez pas à appeler. Privilégiez les SMS.",
                 flexibility: "ℹ️ Note : Toutes les règles peuvent être adaptées à chacun si besoin. Des autorisations spécifiques devront être demandées à la direction.",
-                
-                // PARTIE PARTICIPATION DISCRÈTE
                 h_volunteer: "Participation :",
                 p_volunteer: "Pour ceux qui le souhaitent, il est possible de participer à la vie du lieu sur simple demande.",
-                
                 warning: "LE NON-RESPECT DE CES RÈGLES ENTRAÎNERA UNE EXPULSION DÉFINITIVE DE L'ÉTABLISSEMENT, SANS PRÉAVIS NI REMBOURSEMENT.",
                 
                 f_title: "✉️ Formulaire de Contact",
@@ -300,10 +332,23 @@
                 
                 sign: "La Direction",
                 footer_quote: "Créé avec empathie et foi pour le confort et la sécurité de tous.",
-                news_header: "📢 Actualités",
-                news1_date: "Dimanche 18 Décembre",
-                news1_title: "Réunion d'information",
-                news1_body: "Une réunion importante aura lieu ce dimanche. La présence de tous les résidents est souhaitée.<br><strong>Lieu : Cuisine (11h30)</strong>",
+                
+                // ACTUALITES & INFO
+                news_header: "📢 Fil d'Actualité",
+                
+                // News 1 (Snacks - Récent)
+                news1_date: "Information",
+                news1_title: "Confort & Gourmandises",
+                news1_body: "Sur la table du Hall d'entrée, des bouteilles d'eau, et parfois des gâteaux, crêpes, biscuits ou fruits sont installés.<br><br><strong>Servez-vous !</strong> Cela est fait pour votre confort et offert avec plaisir.<br><br><em>N'oubliez pas d'utiliser le formulaire du site pour vos demandes, il est là pour ça !</em>",
+
+                // News 2 (Voeux - Ancien)
+                news2_date: "Janvier 2026",
+                news2_title: "Message de la direction",
+                news2_body: "Je remercie <strong>Armer et Abésalom</strong> pour leur présence à la réunion.<br><br>Je ne vous en veux pas pour votre absence, et je suis content que certaines règles commencent à être appliquées. Merci pour votre savoir-vivre et votre écoute.<br><br>J'espère que ces règles vous apporteront un cadre, de la sérénité et du bien-être.<br><strong>Bon début d'année, et que Dieu veille sur chacun d'entre nous 🙏.</strong>",
+                
+                imp_header: "AIDE ADMINISTRATIVE",
+                imp_body: "On peut vous aider pour faire des CV ou la rédaction de courriers divers. Bastien vous propose ses services de façon bénévole.<br><br><strong>Envoyez un SMS</strong> avec votre demande pour qu'il puisse s'en occuper (avec ou sans vous).",
+
                 chat_intro: "Je suis <strong>Saint-Eloi</strong>.<br>🚪 Code Portail : <strong>98765</strong><br>📶 Wi-Fi (livebox-4988) : <strong>mayleen34090</strong>",
                 chat_nick_reply: "Mon petit nom c'est <strong>mym_kim34</strong> 😉"
             },
@@ -353,10 +398,21 @@
                 
                 sign: "The Management",
                 footer_quote: "Created with empathy and faith for the comfort and safety of all.",
+                
+                // NEWS & INFO
                 news_header: "📢 News Feed",
-                news1_date: "Sunday, December 18",
-                news1_title: "Information Meeting",
-                news1_body: "An important meeting will take place this Sunday. All residents are requested to attend.<br><strong>Location: Kitchen (11:30 AM)</strong>",
+                
+                news1_date: "Information",
+                news1_title: "Comfort & Treats",
+                news1_body: "On the table in the Entrance Hall, water bottles, and sometimes cakes, pancakes, cookies, or fruit are available.<br><br><strong>Help yourself!</strong> This is done for your comfort and offered with pleasure.<br><br><em>Don't forget to use the website form for your requests, it is there for that!</em>",
+
+                news2_date: "January 2026",
+                news2_title: "Message from Management",
+                news2_body: "I thank <strong>Armer and Abésalom</strong> for their presence at the meeting.<br><br>I do not blame those who were absent, and I am glad that some rules are starting to be followed. Thank you for your good manners and listening.<br><br>I hope these rules will bring you structure, serenity, and well-being.<br><strong>Happy New Year, and may God watch over each of us 🙏.</strong>",
+                
+                imp_header: "ADMINISTRATIVE HELP",
+                imp_body: "We can help you with CVs or writing various letters. Bastien offers his services voluntarily.<br><br><strong>Send an SMS</strong> with your request so he can take care of it (with or without you).",
+
                 chat_intro: "I am <strong>Saint-Eloi</strong>.<br>🚪 Gate Code: <strong>98765</strong><br>📶 Wi-Fi (livebox-4988): <strong>mayleen34090</strong>",
                 chat_nick_reply: "My nickname is <strong>mym_kim34</strong> 😉"
             },
@@ -406,10 +462,20 @@
                 
                 sign: "Администрация",
                 footer_quote: "Создано с эмпатией и верой для комфорта и безопасности всех.",
+                
+                // NEWS & INFO
                 news_header: "📢 Новости",
-                news1_date: "Воскресенье, 18 декабря",
-                news1_title: "Информационное собрание",
-                news1_body: "Важное собрание состоится в это воскресенье. Присутствие всех жильцов желательно.<br><strong>Место: Кухня (11:30)</strong>",
+                news1_date: "Информация",
+                news1_title: "Комфорт и Угощения",
+                news1_body: "На столе в холле есть вода, а иногда печенье, блины или фрукты.<br><br><strong>Угощайтесь!</strong> Это сделано для вашего комфорта и от души.<br><br><em>Не забывайте использовать форму на сайте для ваших запросов!</em>",
+
+                news2_date: "Январь 2026",
+                news2_title: "Сообщение от администрации",
+                news2_body: "Я благодарю <strong>Armer и Abésalom</strong> за их присутствие на собрании.<br><br>Я не виню отсутствовавших и рад, что некоторые правила начинают соблюдаться. Спасибо за вашу вежливость и внимание.<br><br>Надеюсь, эти правила принесут вам структуру, спокойствие и благополучие.<br><strong>С Новым годом, и пусть Бог хранит каждого из нас 🙏.</strong>",
+                
+                imp_header: "ПОМОЩЬ С ДОКУМЕНТАМИ",
+                imp_body: "Мы можем помочь с резюме (CV) или письмами. Бастьен предлагает свои услуги бесплатно.<br><br><strong>Отправьте СМС</strong> с вашим запросом, чтобы он мог заняться этим.",
+
                 chat_intro: "Я <strong>Сент-Элуа (Saint-Eloi)</strong>.<br>🚪 Код: <strong>98765</strong><br>📶 Wi-Fi (livebox-4988): <strong>mayleen34090</strong>",
                 chat_nick_reply: "Меня зовут <strong>mym_kim34</strong> 😉"
             },
@@ -459,10 +525,21 @@
                 
                 sign: "الإدارة",
                 footer_quote: "تم إنشاؤه بتعاطف وإيمان لراحة وسلامة الجميع.",
+                
+                // NEWS & INFO
                 news_header: "📢 الأخبار",
-                news1_date: "الأحد 18 ديسمبر",
-                news1_title: "اجتماع معلومات",
-                news1_body: "سيعقد اجتماع مهم هذا الأحد. يرجى من جميع السكان الحضور.<br><strong>الموقع: المطبخ (11:30)</strong>",
+                
+                news1_date: "معلومات",
+                news1_title: "الراحة والضيافة",
+                news1_body: "على الطاولة في المدخل، توجد زجاجات مياه، وأحيانًا كعك أو بسكويت أو فواكه.<br><br><strong>تفضلوا!</strong> هذا من أجل راحتكم ويقدم بكل سرور.<br><br><em>لا تنسوا استخدام نموذج الموقع لطلباتكم!</em>",
+
+                news2_date: "يناير 2026",
+                news2_title: "رسالة من الإدارة",
+                news2_body: "أشكر <strong>Armer و Abésalom</strong> على حضورهم الاجتماع.<br><br>أنا لا ألوم الغائبين، وأنا سعيد لأن بعض القواعد بدأت تطبق. شكراً لحسن تصرفكم واستماعكم.<br><br>آمل أن تجلب لكم هذه القواعد النظام والسكينة والراحة.<br><strong>بداية عام سعيدة، والله يحفظ كل واحد منا 🙏.</strong>",
+                
+                imp_header: "مساعدة إدارية",
+                imp_body: "يمكننا مساعدتكم في السيرة الذاتية أو كتابة الرسائل. يقدم باستيان خدماته مجانًا.<br><br><strong>أرسل رسالة نصية</strong> بطلبك ليقوم بذلك.",
+
                 chat_intro: "أنا <strong>سانت إيلوي (Saint-Eloi)</strong>.<br>🚪 رمز البوابة: <strong>98765</strong><br>📶 واي فاي (livebox-4988): <strong>mayleen34090</strong>",
                 chat_nick_reply: "لقبي هو <strong>mym_kim34</strong> 😉"
             },
@@ -491,17 +568,13 @@
                               <li><strong>ელექტრომოწყობილობები:</strong> ოთახებში პირადი ელექტრომოწყობილობების გამოყენება საჭიროებს ადმინისტრაციის წინასწარ ნებართვას.</li>`,
                 h_departure: "🚪 6. გასვლა",
                 l_departure: `<li>გასვლის დღეს ოთახი უნდა განთავისუფლდეს <strong>მაქსიმუმ 11:00 საათზე</strong>.</li>`,
-                
                 resp_label: "მენეჯერი",
                 btn_call: "დარეკვა",
                 emergency: "საგანგებო სიტუაციებში დარეკეთ. უმჯობესია SMS.",
                 flexibility: "ℹ️ შენიშვნა: წესების ადაპტირება შესაძლებელია ადმინისტრაციასთან შეთანხმებით.",
-                
                 h_volunteer: "მონაწილეობა:",
                 p_volunteer: "მსურველებს შეუძლიათ მონაწილეობა მიიღონ ადგილობრივ ცხოვრებაში მარტივი მოთხოვნის საფუძველზე.",
-                
                 warning: "ამ წესების დარღვევა გამოიწვევს დაწესებულებიდან საბოლოო გაძევებას, გაფრთხილებისა და ანაზღაურების გარეშე.",
-                
                 f_title: "✉️ საკონტაქტო ფორმა",
                 f_desc: "პრობლემის შეტყობინება ან ინფორმაცია.",
                 f_email_l: "თქვენი ელ. ფოსტა",
@@ -509,13 +582,23 @@
                 f_type: "მოთხოვნის ტიპი",
                 f_msg: "შეტყობინება",
                 f_btn: "გაგზავნა",
-                
                 sign: "ადმინისტრაცია",
                 footer_quote: "შექმნილია თანაგრძნობითა და რწმენით ყველას კომფორტისა და უსაფრთხოებისთვის.",
+                
+                // NEWS & INFO
                 news_header: "📢 სიახლეები",
-                news1_date: "კვირა, 18 დეკემბერი",
-                news1_title: "საინფორმაციო შეხვედრა",
-                news1_body: "ამ კვირას გაიმართება მნიშვნელოვანი შეხვედრა. ყველა მაცხოვრებლის დასწრება სასურველია.<br><strong>ადგილი: სამზარეულო (11:30)</strong>",
+                
+                news1_date: "ინფორმაცია",
+                news1_title: "კომფორტი და სასუსნავი",
+                news1_body: "შესასვლელში მაგიდაზე დევს წყალი, ზოგჯერ ნამცხვრები ან ხილი.<br><br><strong>მიირთვით!</strong> ეს თქვენი კომფორტისთვისაა.<br><br><em>არ დაგავიწყდეთ საიტის ფორმის გამოყენება თქვენი მოთხოვნებისთვის!</em>",
+
+                news2_date: "იანვარი 2026",
+                news2_title: "შეტყობინება ადმინისტრაციისგან",
+                news2_body: "მადლობას ვუხდი <strong>Armer-ს და Abésalom-ს</strong> შეხვედრაზე დასწრებისთვის.<br><br>არ ვსაყვედურობ მათ, ვინც არ იყო და მიხარია, რომ ზოგიერთი წესის დაცვა დაიწყო. მადლობა ზრდილობისა და მოსმენისთვის.<br><br>იმედი მაქვს, ეს წესები მოგიტანთ სიმშვიდესა და კეთილდღეობას.<br><strong>გილოცავთ ახალ წელს და ღმერთმა დაგლოცოთ თითოეული ჩვენგანი 🙏.</strong>",
+                
+                imp_header: "ადმინისტრაციული დახმარება",
+                imp_body: "შეგვიძლია დაგეხმაროთ CV-ს ან წერილების მომზადებაში. ბასტიენი გთავაზობთ დახმარებას უსასყიდლოდ.<br><br><strong>გამოაგზავნეთ SMS</strong> თქვენი მოთხოვნით.",
+
                 chat_intro: "მე ვარ <strong>სენტ-ელოი</strong>.<br>🚪 კოდი: <strong>98765</strong><br>📶 Wi-Fi (livebox-4988): <strong>mayleen34090</strong>",
                 chat_nick_reply: "ჩემი მეტსახელია <strong>mym_kim34</strong> 😉"
             },
@@ -544,17 +627,13 @@
                               <li><strong>Էլեկտրական սարքեր.</strong> Սենյակներում անձնական կենցաղային սարքերի օգտագործումը պահանջում է հաստատության նախնական թույլտվությունը:</li>`,
                 h_departure: "🚪 6. ՄԵԿՆՈՒՄ",
                 l_departure: `<li>Մեկնման օրը սենյակը պետք է ազատել <strong>առավելագույնը ժամը 11:00-ին</strong>:</li>`,
-                
                 resp_label: "ՂԵԿԱՎԱՐ / MANAGER",
                 btn_call: "Զանգահարել",
                 emergency: "Արտակարգ դեպքերում զանգահարեք: Նախընտրելի է SMS:",
                 flexibility: "ℹ️ Նշում. Կանոնները կարող են փոփոխվել ղեկավարության թույլտվությամբ:",
-                
                 h_volunteer: "Մասնակցություն:",
                 p_volunteer: "Ցանկացողները կարող են մասնակցել տեղի կյանքին՝ պարզ խնդրանքով։",
-                
                 warning: "ԱՅՍ ԿԱՆՈՆՆԵՐԻ ԽԱԽՏՈՒՄԸ ԿՀԱՆԳԵՑՆԻ ՀԱՍՏԱՏՈՒԹՅՈՒՆԻՑ ՎԵՐՋՆԱԿԱՆ ՎՏԱՐՄԱՆ, ԱՌԱՆՑ ԾԱՆՈՒՑՄԱՆ ԿԱՄ ՓՈԽՀԱՏՈՒՑՄԱՆ:",
-                
                 f_title: "✉️ Կապի ձև",
                 f_desc: "Խնդրի մասին հայտնել կամ տեղեկություն:",
                 f_email_l: "Ձեր էլ. փոստը",
@@ -562,13 +641,23 @@
                 f_type: "Հարցման տեսակը",
                 f_msg: "Հաղորդագրություն",
                 f_btn: "Ուղարկել",
-                
                 sign: "Տնօրինություն",
                 footer_quote: "Ստեղծվել է կարեկցանքով և հավատով` բոլորի հարմարավետության և անվտանգության համար:",
+                
+                // NEWS & INFO
                 news_header: "📢 Նորություններ",
-                news1_date: "Կիրակի, 18 Դեկտեմբեր",
-                news1_title: "Տեղեկատվական հանդիպում",
-                news1_body: "Այս կիրակի տեղի կունենա կարևոր հանդիպում: Բոլոր բնակիչների ներկայությունը ցանկալի է:<br><strong>Վայրը` Խոհանոց (11:30)</strong>",
+                
+                news1_date: "Տեղեկատվություն",
+                news1_title: "Հարմարավետություն և հյուրասիրություն",
+                news1_body: "Սրահի սեղանին դրված են ջուր, երբեմն թխվածքներ կամ մրգեր:<br><br><strong>Հյուրասիրվեք:</strong> Սա ձեր հարմարավետության համար է:<br><br><em>Մի մոռացեք օգտագործել կայքի ձևը ձեր հարցումների համար:</em>",
+
+                news2_date: "Հունվար 2026",
+                news2_title: "Ուղերձ ղեկավարությունից",
+                news2_body: "Շնորհակալություն եմ հայտնում <strong>Armer-ին և Abésalom-ին</strong> հանդիպմանը ներկա գտնվելու համար:<br><br>Ես չեմ մեղադրում բացակայողներին և ուրախ եմ, որ որոշ կանոններ սկսում են պահպանվել: Շնորհակալություն ձեր քաղաքավարության և լսելու համար:<br><br>Հուսով եմ, որ այս կանոնները ձեզ կբերեն կարգապահություն, հանգստություն և բարեկեցություն:<br><strong>Շնորհավոր Ամանոր, և թող Աստված պահպանի յուրաքանչյուրիս 🙏:</strong>",
+                
+                imp_header: "ՎԱՐՉԱԿԱՆ ՕԳՆՈՒԹՅՈՒՆ",
+                imp_body: "Մենք կարող ենք օգնել CV-ի կամ նամակների հարցում: Բաստիենը օգնում է անվճար:<br><br><strong>Ուղարկեք SMS</strong> ձեր հարցումով:",
+
                 chat_intro: "Ես <strong>Սենտ-Էլոին (Saint-Eloi)</strong> եմ:<br>🚪 Կոդ: <strong>98765</strong><br>📶 Wi-Fi (livebox-4988): <strong>mayleen34090</strong>",
                 chat_nick_reply: "Իմ մականունն է <strong>mym_kim34</strong> 😉"
             }
@@ -632,9 +721,20 @@
 
             // News Updates
             document.getElementById('news_header').textContent = data.news_header;
+            
+            // News 1 (Snacks)
             document.getElementById('news1_date').textContent = data.news1_date;
             document.getElementById('news1_title').textContent = data.news1_title;
             document.getElementById('news1_body').innerHTML = data.news1_body;
+
+            // News 2 (Voeux)
+            document.getElementById('news2_date').textContent = data.news2_date;
+            document.getElementById('news2_title').textContent = data.news2_title;
+            document.getElementById('news2_body').innerHTML = data.news2_body;
+
+            // Important Info Update
+            document.getElementById('imp_header').textContent = data.imp_header;
+            document.getElementById('imp_body').innerHTML = data.imp_body;
         }
 
         // --- CHATBOT LOGIC ---
