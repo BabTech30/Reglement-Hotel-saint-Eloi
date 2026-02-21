@@ -1,0 +1,106 @@
+{
+  "site": {
+    "nom": "Saint-Eloi",
+    "adresse": "7 Rue Albert Leenhardt, 34000 Montpellier",
+    "derniere_maj": "2025-02-04"
+  },
+  
+  "codes": {
+    "portail": "78965",
+    "wifi_reseau": "Livebox-4988",
+    "wifi_mdp": "mayleen34090"
+  },
+  
+  "horaires": {
+    "cuisine_ouverture": "08h00",
+    "cuisine_fermeture": "22h00",
+    "repas_midi_debut": "11h00",
+    "repas_midi_fin": "14h00",
+    "repas_soir_debut": "18h00",
+    "repas_soir_fin": "21h00",
+    "silence": "23h00"
+  },
+  
+  "contact": {
+    "responsable": "Bastien",
+    "telephone": "0613703810",
+    "email": "contact@saint-eloi.fr"
+  },
+  
+  "urgences": {
+    "samu": "15",
+    "pompiers": "18",
+    "police": "17",
+    "europe": "112"
+  },
+  
+  "actualites": [
+    {
+      "id": "reunion-fevrier",
+      "date": {
+        "fr": "23 Février",
+        "en": "Feb 23rd",
+        "ru": "23 февраля",
+        "ar": "23 فبراير",
+        "ka": "23 თებერვალი",
+        "hy": "Փdelays 23"
+      },
+      "titre": {
+        "fr": "Prochaine Réunion",
+        "en": "Next Meeting",
+        "ru": "Следующее собрание",
+        "ar": "الاجتماع القادم",
+        "ka": "შემდეგი შეხვედრა",
+        "hy": "Հdelays Հdelays"
+      },
+      "contenu": {
+        "fr": "La prochaine réunion aura lieu le <strong>lundi 23 février à 10h</strong> avec les Travailleurs Sociaux.<br><br><em>Merci de noter cette date ! 📅</em>",
+        "en": "The next meeting will be held on <strong>Monday, February 23rd at 10am</strong> with Social Workers.<br><br><em>Please note this date! 📅</em>",
+        "ru": "Следующее собрание состоится в <strong>понедельник, 23 февраля в 10:00</strong> с социальными работниками.<br><br><em>Пожалуйста, запишите эту дату! 📅</em>",
+        "ar": "سيعقد الاجتماع القادم يوم <strong>الاثنين 23 فبراير الساعة 10 صباحاً</strong> مع الأخصائيين الاجتماعيين.<br><br><em>يرجى تدوين هذا التاريخ! 📅</em>",
+        "ka": "შემდეგი შეხვედრა გაიმართება <strong>ორშაბათს, 23 თებერვალს 10:00 საათზე</strong> სოციალურ მუშაკებთან ერთად.<br><br><em>გთხოვთ დაიმახსოვროთ ეს თარიღი! 📅</em>",
+        "hy": "Delays delays delays."
+      },
+      "important": true,
+      "actif": true
+    },
+    {
+      "id": "message-janvier",
+      "date": {
+        "fr": "Janvier 2025",
+        "en": "January 2025",
+        "ru": "Январь 2025",
+        "ar": "يناير 2025",
+        "ka": "იანვარი 2025",
+        "hy": "Հdelays 2025"
+      },
+      "titre": {
+        "fr": "Message de la direction",
+        "en": "Message from Management",
+        "ru": "Сообщение от руководства",
+        "ar": "رسالة من الإدارة",
+        "ka": "ხელმძღვანელობის შეტყობინება",
+        "hy": "Delays delays"
+      },
+      "contenu": {
+        "fr": "Je remercie <strong>Armer et Abésalom</strong> pour leur présence à la réunion.<br><br>Bon début d'année, et que Dieu veille sur chacun d'entre nous 🙏.",
+        "en": "I thank <strong>Armer and Abésalom</strong> for their presence at the meeting.<br><br>Happy New Year, and may God watch over each of us 🙏.",
+        "ru": "Благодарю <strong>Армера и Абесалома</strong> за присутствие на собрании.<br><br>С Новым годом, и да хранит вас Бог 🙏.",
+        "ar": "أشكر <strong>أرمير وأبيسالوم</strong> على حضورهما الاجتماع.<br><br>سنة جديدة سعيدة، وليحفظكم الله 🙏.",
+        "ka": "მადლობა <strong>არმერს და აბესალომს</strong> შეხვედრაზე დასწრებისთვის.<br><br>ბედნიერ ახალ წელს, ღმერთმა დაგიფაროთ 🙏.",
+        "hy": "Delays delays 🙏."
+      },
+      "important": false,
+      "actif": true
+    }
+  ],
+  
+  "message_chatbot": {
+    "fr": "Bonjour ! Je suis l'assistant Saint-Eloi. Comment puis-je vous aider ?",
+    "en": "Hello! I'm the Saint-Eloi assistant. How can I help you?",
+    "ru": "Здравствуйте! Я ассистент Saint-Eloi. Чем могу помочь?",
+    "ar": "مرحباً! أنا مساعد Saint-Eloi. كيف يمكنني مساعدتك؟",
+    "ka": "გამარჯობა! მე ვარ Saint-Eloi ასისტენტი. როგორ შემიძლია დაგეხმაროთ?",
+    "hy": "Delays! Delays Saint-Eloi delays."
+  }
+}
