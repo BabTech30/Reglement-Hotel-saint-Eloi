@@ -3,1146 +3,1106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saint-Eloi - Règlement Intérieur</title>
-    <meta name="description" content="Règlement intérieur et informations pratiques de la résidence Saint-Eloi, Montpellier">
-    <meta name="theme-color" content="#2c5530">
-    
-    <!-- PWA -->
-    <link rel="manifest" href="manifest.json">
-    <link rel="apple-touch-icon" href="icon-192.png">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    
+    <title>Règlement & Actualités / Saint-Eloi</title>
     <style>
         :root {
-            --primary: #2c5530;
-            --primary-light: #4a7c50;
-            --accent: #c9a227;
-            --bg: #f5f5f0;
-            --text: #333;
-            --card-bg: #fff;
-            --shadow: rgba(0,0,0,0.1);
-            --font-size-base: 16px;
+            --primary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --positive-color: #27ae60;
+            --chat-color: #3498db;
+            --highlight-gold: #f1c40f;
+            --important-bg: #e8f6f3;
+            --important-border: #1abc9c;
+            --emergency-red: #c0392b;
         }
-        
-        [data-theme="dark"] {
-            --primary: #4a7c50;
-            --primary-light: #6a9c70;
-            --bg: #1a1a1a;
-            --text: #e0e0e0;
-            --card-bg: #2d2d2d;
-            --shadow: rgba(0,0,0,0.3);
-        }
-        
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+
+        * { box-sizing: border-box; }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: var(--bg);
-            color: var(--text);
             line-height: 1.6;
-            font-size: var(--font-size-base);
-            padding-top: 110px;
-            transition: background 0.3s, color 0.3s;
+            background-color: var(--bg-color);
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            padding-top: 80px;
+            padding-bottom: 100px;
         }
-        
-        /* TOP BAR STICKY */
+
+        /* ===== TOP BAR (Navigation + Language) ===== */
         .top-bar {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            color: white;
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
             z-index: 1000;
-            box-shadow: 0 2px 10px var(--shadow);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.3);
         }
-        
+
         .top-bar-inner {
             max-width: 1100px;
             margin: 0 auto;
-            padding: 10px 20px;
+            padding: 10px 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
             gap: 10px;
         }
-        
+
         .nav-links {
             display: flex;
-            gap: 15px;
             flex-wrap: wrap;
-            align-items: center;
+            gap: 6px;
+            justify-content: center;
+            flex: 1;
         }
-        
+
         .nav-links a {
+            background: rgba(255,255,255,0.15);
             color: white;
+            padding: 6px 10px;
+            border-radius: 15px;
             text-decoration: none;
-            padding: 5px 10px;
-            border-radius: 5px;
-            transition: background 0.3s;
-            font-size: 14px;
+            font-size: 0.8em;
+            font-weight: 500;
+            transition: all 0.2s;
+            white-space: nowrap;
         }
-        
-        .nav-links a:hover { background: rgba(255,255,255,0.2); }
-        
-        .top-controls {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.05);
         }
-        
-        /* Language Selector */
+
+        /* Language Selector in Top Bar */
         .lang-selector {
             display: flex;
             align-items: center;
             gap: 5px;
         }
-        
+
         .lang-selector select {
-            padding: 5px 10px;
-            border-radius: 5px;
+            padding: 6px 10px;
+            border-radius: 15px;
             border: none;
             background: rgba(255,255,255,0.9);
+            color: #2c3e50;
+            font-size: 0.85em;
+            font-weight: 500;
             cursor: pointer;
-            font-size: 14px;
         }
-        
-        /* Theme & Font Controls */
-        .control-btn {
-            background: rgba(255,255,255,0.2);
-            border: none;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: background 0.3s;
+
+        .lang-icon {
+            font-size: 1.2em;
         }
-        
-        .control-btn:hover { background: rgba(255,255,255,0.3); }
-        
-        /* Emergency Bar */
+
+        /* ===== COMPACT EMERGENCY BAR ===== */
         .emergency-bar {
-            background: linear-gradient(135deg, #c0392b, #e74c3c);
+            background: linear-gradient(135deg, #c0392b 0%, #e74c3c 100%);
             color: white;
             padding: 8px 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 15px;
             flex-wrap: wrap;
-            font-size: 14px;
+            gap: 15px;
+            font-size: 0.9em;
         }
-        
+
         .emergency-bar a {
             color: white;
             text-decoration: none;
             font-weight: bold;
-            padding: 2px 8px;
             background: rgba(255,255,255,0.2);
-            border-radius: 3px;
+            padding: 4px 10px;
+            border-radius: 12px;
+            transition: all 0.2s;
         }
-        
-        .emergency-bar a:hover { background: rgba(255,255,255,0.3); }
-        
-        /* Main Container */
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
+
+        .emergency-bar a:hover {
+            background: rgba(255,255,255,0.35);
         }
-        
-        /* Header */
-        header {
-            text-align: center;
-            padding: 30px 20px;
-            background: var(--card-bg);
-            border-radius: 15px;
-            margin-bottom: 20px;
-            box-shadow: 0 3px 15px var(--shadow);
-        }
-        
-        header h1 {
-            color: var(--primary);
-            font-size: 2em;
-            margin-bottom: 10px;
-        }
-        
-        .address {
-            color: #666;
-            font-size: 1.1em;
-        }
-        
-        [data-theme="dark"] .address { color: #aaa; }
-        
-        /* Install Banner */
-        .install-banner {
-            background: linear-gradient(135deg, var(--accent), #d4af37);
-            color: #333;
-            padding: 12px 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            display: none;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        
-        .install-banner.show { display: flex; }
-        
-        .install-banner button {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 8px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        
-        /* QR Code Section */
-        .qr-section {
-            background: var(--card-bg);
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            margin-bottom: 20px;
-            box-shadow: 0 3px 15px var(--shadow);
-        }
-        
-        .qr-section h3 { color: var(--primary); margin-bottom: 15px; }
-        
-        #qrcode {
-            display: inline-block;
-            padding: 15px;
-            background: white;
-            border-radius: 10px;
-        }
-        
-        .qr-section small {
-            display: block;
-            margin-top: 10px;
-            color: #666;
-        }
-        
-        /* Sections */
-        section {
-            background: var(--card-bg);
-            padding: 25px;
-            margin-bottom: 20px;
-            border-radius: 15px;
-            box-shadow: 0 3px 15px var(--shadow);
-        }
-        
-        section h2 {
-            color: var(--primary);
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--accent);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        /* Quick Info Cards */
-        .quick-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-        
-        .info-card {
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            color: white;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-        }
-        
-        .info-card .icon { font-size: 2em; margin-bottom: 10px; }
-        .info-card .label { font-size: 0.9em; opacity: 0.9; }
-        .info-card .value { font-size: 1.4em; font-weight: bold; margin-top: 5px; }
-        
-        /* News Cards */
-        .news-card {
-            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-            border-left: 4px solid var(--accent);
-            padding: 20px;
-            margin-bottom: 15px;
-            border-radius: 0 10px 10px 0;
-        }
-        
-        [data-theme="dark"] .news-card {
-            background: linear-gradient(135deg, #3d3d3d, #2d2d2d);
-        }
-        
-        .news-card.important {
-            border-left-color: #e74c3c;
-            background: linear-gradient(135deg, #fff5f5, #ffe0e0);
-        }
-        
-        [data-theme="dark"] .news-card.important {
-            background: linear-gradient(135deg, #4d2d2d, #3d2020);
-        }
-        
-        .news-date {
+
+        .emergency-bar .em-label {
             font-size: 0.85em;
-            color: var(--accent);
-            font-weight: bold;
+            opacity: 0.9;
         }
-        
-        .news-title {
-            font-size: 1.2em;
-            color: var(--primary);
-            margin: 5px 0;
-        }
-        
-        /* Rules List */
-        .rules-list { list-style: none; }
-        
-        .rules-list li {
-            padding: 12px 15px;
-            margin-bottom: 10px;
-            background: linear-gradient(135deg, #f8f9fa, #fff);
-            border-radius: 8px;
-            border-left: 3px solid var(--primary);
+
+        /* ===== MAIN LAYOUT ===== */
+        .main-layout {
+            max-width: 1100px;
+            margin: 0 auto;
             display: flex;
-            align-items: flex-start;
-            gap: 10px;
-        }
-        
-        [data-theme="dark"] .rules-list li {
-            background: linear-gradient(135deg, #3d3d3d, #2d2d2d);
-        }
-        
-        .rules-list .icon { font-size: 1.3em; }
-        
-        /* Contact Form */
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        
-        .contact-form input,
-        .contact-form textarea,
-        .contact-form select {
-            padding: 12px 15px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-size: 1em;
-            background: var(--card-bg);
-            color: var(--text);
-        }
-        
-        .contact-form input:focus,
-        .contact-form textarea:focus {
-            border-color: var(--primary);
-            outline: none;
-        }
-        
-        .contact-form button {
-            background: var(--primary);
-            color: white;
-            padding: 15px;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.1em;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        
-        .contact-form button:hover { background: var(--primary-light); }
-        
-        /* Direct Contact Buttons */
-        .direct-contact {
-            display: flex;
-            gap: 10px;
+            gap: 20px;
             flex-wrap: wrap;
-            margin-top: 20px;
         }
-        
-        .contact-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 20px;
+
+        .content-column { flex: 2; min-width: 300px; }
+        .news-column { flex: 1; min-width: 280px; order: -1; } 
+
+        @media (min-width: 800px) { .news-column { order: 1; } }
+
+        .card {
+            background-color: var(--card-bg);
+            padding: 25px;
             border-radius: 8px;
-            text-decoration: none;
-            color: white;
-            font-weight: bold;
-            transition: transform 0.2s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
         }
+
+        /* Important Info Card */
+        .important-card {
+            border-left: 5px solid var(--important-border);
+            background-color: var(--important-bg);
+        }
+        .important-title { color: #16a085; font-weight: bold; font-size: 1.1em; margin-bottom: 10px; }
         
-        .contact-btn:hover { transform: scale(1.05); }
-        .contact-btn.phone { background: #27ae60; }
-        .contact-btn.sms { background: #3498db; }
-        .contact-btn.whatsapp { background: #25d366; }
+        /* News Styles */
+        .news-card { border-top: 5px solid #3498db; }
+        .news-item { border-bottom: 1px solid #eee; padding-bottom: 15px; margin-bottom: 15px; }
+        .news-item:last-child { border-bottom: none; margin-bottom: 0; }
+        .news-date { font-size: 0.85em; color: #7f8c8d; font-weight: bold; }
+        .news-title { font-size: 1.1em; color: #2980b9; margin: 5px 0; font-weight: bold; }
+        .news-body { font-size: 0.95em; }
+
+        /* Header & Sections */
+        header { text-align: center; border-bottom: 2px solid var(--primary-color); padding-bottom: 20px; margin-bottom: 25px; }
+        h1 { color: var(--primary-color); margin: 0; text-transform: uppercase; font-size: 22px; }
         
-        /* Chatbot */
-        .chatbot {
+        h2 { color: var(--primary-color); font-size: 16px; border-left: 5px solid var(--primary-color); padding-left: 10px; margin-top: 25px; background-color: #eef2f5; padding: 8px; }
+
+        /* RTL Support */
+        body.rtl { direction: rtl; text-align: right; }
+        body.rtl h2 { border-left: none; border-right: 5px solid var(--primary-color); padding-left: 0; padding-right: 10px; }
+        body.rtl li { padding-left: 0; padding-right: 25px; }
+        body.rtl li::before { left: auto; right: 5px; }
+        body.rtl .important-card { border-left: none; border-right: 5px solid var(--important-border); }
+
+        ul { list-style-type: none; padding: 0; }
+        li { margin-bottom: 12px; padding-left: 25px; position: relative; } 
+        li::before { content: "•"; color: var(--primary-color); font-weight: bold; position: absolute; left: 5px; }
+        
+        /* Manager Card */
+        .manager-card {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white; padding: 20px; border-radius: 12px; margin-bottom: 20px; text-align: center;
+            box-shadow: 0 10px 20px rgba(44, 62, 80, 0.3);
+        }
+        .manager-label { text-transform: uppercase; letter-spacing: 2px; font-size: 0.75em; opacity: 0.8; margin-bottom: 5px; }
+        .manager-name { font-size: 1.6em; font-weight: bold; margin: 0; color: var(--highlight-gold); }
+        .manager-phone { font-size: 1.3em; margin: 8px 0; }
+        .manager-actions { display: flex; gap: 10px; justify-content: center; margin-top: 12px; }
+        .action-btn { flex: 1; max-width: 130px; padding: 8px; border-radius: 5px; text-decoration: none; font-weight: bold; text-align: center; font-size: 0.9em; }
+        .btn-call { background: white; color: var(--primary-color); }
+        .btn-sms { background: #27ae60; color: white; }
+        .emergency-note { background: #ffebee; color: #c0392b; padding: 8px; border-radius: 5px; font-size: 0.85em; text-align: center; font-weight: bold; margin-top: 10px; }
+
+        /* Form */
+        .form-section { margin-top: 30px; padding-top: 20px; border-top: 2px dashed #ccc; }
+        .form-group { margin-bottom: 12px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; font-size: 0.9em; }
+        input, textarea, select.form-control { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; }
+        button.submit-btn { background-color: var(--primary-color); color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; width: 100%; font-size: 15px; }
+
+        /* ===== ENHANCED CHATBOT ===== */
+        .chat-widget {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            z-index: 999;
-        }
-        
-        .chat-toggle {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: var(--primary);
-            color: white;
-            border: none;
-            font-size: 1.5em;
-            cursor: pointer;
-            box-shadow: 0 4px 15px var(--shadow);
-            transition: transform 0.3s;
-        }
-        
-        .chat-toggle:hover { transform: scale(1.1); }
-        
-        .chat-window {
-            position: absolute;
-            bottom: 70px;
-            right: 0;
             width: 320px;
-            max-height: 450px;
-            background: var(--card-bg);
-            border-radius: 15px;
-            box-shadow: 0 5px 30px var(--shadow);
-            display: none;
-            flex-direction: column;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.25);
             overflow: hidden;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
         }
-        
-        .chat-window.open { display: flex; }
-        
+
         .chat-header {
-            background: var(--primary);
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
             color: white;
-            padding: 15px;
+            padding: 12px 15px;
             font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        
+
         .chat-body {
             padding: 15px;
-            flex: 1;
+            max-height: 350px;
             overflow-y: auto;
-            max-height: 300px;
+            display: none;
+            background: #f8f9fa;
+            flex-direction: column;
         }
-        
-        .chat-message {
-            padding: 10px 15px;
-            border-radius: 15px;
+
+        .chat-open .chat-body { display: flex; }
+
+        .message {
             margin-bottom: 10px;
+            padding: 10px 14px;
+            border-radius: 18px;
             max-width: 85%;
+            font-size: 14px;
+            line-height: 1.4;
         }
-        
-        .chat-message.bot {
-            background: #e8f5e9;
-            color: #333;
+
+        .bot {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            color: #1565c0;
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
         }
-        
-        [data-theme="dark"] .chat-message.bot {
-            background: #2d4d30;
-            color: #e0e0e0;
-        }
-        
-        .chat-message.user {
-            background: var(--primary);
+
+        .user {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
             color: white;
+            align-self: flex-end;
             margin-left: auto;
+            border-bottom-right-radius: 4px;
         }
-        
+
+        /* Quick Action Buttons */
         .chat-actions {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 6px;
             margin-top: 10px;
         }
-        
-        .chat-action-btn {
-            background: var(--accent);
-            color: #333;
+
+        .chat-actions button {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
             border: none;
             padding: 8px 12px;
             border-radius: 20px;
-            cursor: pointer;
             font-size: 0.85em;
-            transition: transform 0.2s;
-        }
-        
-        .chat-action-btn:hover { transform: scale(1.05); }
-        
-        .chat-info-box {
-            background: linear-gradient(135deg, #fff9e6, #fff3cd);
-            border: 2px solid var(--accent);
-            border-radius: 10px;
-            padding: 12px;
-            margin-top: 10px;
-        }
-        
-        [data-theme="dark"] .chat-info-box {
-            background: linear-gradient(135deg, #4d4d2d, #3d3d20);
-        }
-        
-        .chat-input {
-            display: flex;
-            padding: 10px;
-            border-top: 1px solid #ddd;
-            gap: 10px;
-        }
-        
-        .chat-input input {
-            flex: 1;
-            padding: 10px;
-            border: 2px solid #ddd;
-            border-radius: 20px;
-            outline: none;
-            background: var(--card-bg);
-            color: var(--text);
-        }
-        
-        .chat-input button {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 20px;
             cursor: pointer;
+            transition: all 0.2s;
         }
+
+        .chat-actions button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 3px 10px rgba(52, 152, 219, 0.4);
+        }
+
+        /* Info Box in Chat */
+        .chat-info-box {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeeba 100%);
+            border: 1px solid #ffc107;
+            border-radius: 12px;
+            padding: 12px;
+            margin: 10px 0;
+            font-size: 0.9em;
+        }
+
+        .chat-info-box strong {
+            color: #856404;
+        }
+
+        .chat-input-area {
+            border-top: 1px solid #eee;
+            padding: 10px;
+            display: none;
+            background: white;
+        }
+
+        .chat-open .chat-input-area { display: flex; }
+        .chat-input-area input { flex: 1; padding: 8px 12px; border: 1px solid #ddd; border-radius: 20px; }
+        .chat-input-area button { margin-left: 8px; background: var(--chat-color); color: white; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; }
         
-        /* Footer */
-        footer {
+        .footer { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee; font-size: 0.85em; color: #777; }
+        .footer-quote { font-style: italic; color: var(--primary-color); margin-top: 10px; font-weight: 500; }
+        
+        .participation-note { margin-top: 25px; padding: 12px; color: #555; font-size: 0.85em; border-left: 3px solid #ccc; background: #fdfdfd; }
+
+        .warning-box {
+            background-color: #ffebee;
+            border: 2px solid #e74c3c;
+            color: #c0392b;
+            padding: 15px;
             text-align: center;
-            padding: 30px;
-            color: #666;
+            font-weight: bold;
+            margin-top: 30px;
+            border-radius: 5px;
+            text-transform: uppercase;
+            font-size: 0.9em;
         }
-        
-        footer a { color: var(--primary); }
-        
-        /* Print Styles */
-        @media print {
-            .top-bar, .emergency-bar, .chatbot, .install-banner, .qr-section, .top-controls { display: none !important; }
-            body { padding-top: 0; }
-            section { break-inside: avoid; box-shadow: none; border: 1px solid #ddd; }
+
+        .flexibility-note {
+            font-style: italic;
+            font-size: 0.85em;
+            color: #555;
+            margin: 15px 0;
+            border-left: 3px solid #ccc;
+            padding-left: 10px;
         }
-        
-        /* Mobile Responsive */
+
         @media (max-width: 600px) {
-            .top-bar-inner { flex-direction: column; }
+            .chat-widget { width: 90%; right: 5%; }
             .nav-links { justify-content: center; }
-            .top-controls { justify-content: center; width: 100%; }
-            .chat-window { width: 290px; right: -10px; }
-            header h1 { font-size: 1.5em; }
+            .top-bar-inner { flex-direction: column; }
         }
-        
-        /* RTL Support */
-        [dir="rtl"] {
-            text-align: right;
-        }
-        
-        [dir="rtl"] .news-card {
-            border-left: none;
-            border-right: 4px solid var(--accent);
-            border-radius: 10px 0 0 10px;
-        }
-        
-        [dir="rtl"] .rules-list li {
-            border-left: none;
-            border-right: 3px solid var(--primary);
+
+        @media print {
+            .top-bar, .chat-widget, .emergency-bar { display: none !important; }
+            body { padding-top: 20px; }
         }
     </style>
 </head>
 <body>
-    <!-- Top Navigation Bar -->
-    <nav class="top-bar">
+
+    <!-- TOP BAR: Navigation + Language Selector -->
+    <div class="top-bar">
         <div class="top-bar-inner">
-            <div class="nav-links">
-                <a href="#accueil" data-i18n="nav_home">🏠 Accueil</a>
-                <a href="#actualites" data-i18n="nav_news">📢 Actualités</a>
-                <a href="#reglement" data-i18n="nav_rules">📋 Règlement</a>
-                <a href="#contact" data-i18n="nav_contact">📞 Contact</a>
-            </div>
-            <div class="top-controls">
-                <div class="lang-selector">
-                    <span>🌍</span>
-                    <select id="langSelect" onchange="changeLanguage(this.value)">
-                        <option value="fr">Français</option>
-                        <option value="en">English</option>
-                        <option value="ru">Русский</option>
-                        <option value="ar">العربية</option>
-                        <option value="ka">ქართული</option>
-                        <option value="hy">Հայերdelays</option>
-                    </select>
-                </div>
-                <button class="control-btn" onclick="toggleTheme()" title="Mode sombre">🌙</button>
-                <button class="control-btn" onclick="changeFontSize(-1)" title="Réduire">A-</button>
-                <button class="control-btn" onclick="changeFontSize(1)" title="Agrandir">A+</button>
-            </div>
-        </div>
-        <div class="emergency-bar">
-            <span>🚨 <span data-i18n="emergency_label">Urgences</span> :</span>
-            <a href="tel:15">SAMU 15</a>
-            <a href="tel:18">Pompiers 18</a>
-            <a href="tel:17">Police 17</a>
-            <a href="tel:112">Europe 112</a>
-        </div>
-    </nav>
-
-    <!-- Install PWA Banner -->
-    <div class="install-banner" id="installBanner">
-        <span>📲 <span data-i18n="install_prompt">Installez l'application Saint-Eloi sur votre téléphone !</span></span>
-        <button onclick="installPWA()" data-i18n="install_btn">Installer</button>
-    </div>
-
-    <div class="container">
-        <!-- Header -->
-        <header id="accueil">
-            <h1>🏠 Saint-Eloi</h1>
-            <p class="address" id="siteAddress">7 Rue Albert Leenhardt, 34000 Montpellier</p>
-            <p style="margin-top:10px; font-size:0.9em; color:#888;">
-                <span data-i18n="last_update">Dernière mise à jour</span> : <span id="lastUpdate">--</span>
-            </p>
-        </header>
-
-        <!-- Quick Info Cards -->
-        <div class="quick-info">
-            <div class="info-card">
-                <div class="icon">🔑</div>
-                <div class="label" data-i18n="code_portail">Code Portail</div>
-                <div class="value" id="codePortail">--</div>
-            </div>
-            <div class="info-card">
-                <div class="icon">📶</div>
-                <div class="label" data-i18n="code_wifi">WiFi</div>
-                <div class="value" id="codeWifi">--</div>
-            </div>
-            <div class="info-card">
-                <div class="icon">🍳</div>
-                <div class="label" data-i18n="horaires_cuisine">Cuisine</div>
-                <div class="value" id="horaireCuisine">--</div>
-            </div>
-            <div class="info-card">
-                <div class="icon">🤫</div>
-                <div class="label" data-i18n="silence">Silence</div>
-                <div class="value" id="heureSilence">--</div>
-            </div>
-        </div>
-
-        <!-- QR Code Section -->
-        <section class="qr-section">
-            <h3>📱 <span data-i18n="qr_title">Partagez ce site</span></h3>
-            <div id="qrcode"></div>
-            <small data-i18n="qr_desc">Scannez pour accéder au site sur votre téléphone</small>
-            <br><br>
-            <button onclick="printQR()" class="control-btn" style="background:var(--primary);color:white;padding:10px 20px;">
-                🖨️ <span data-i18n="qr_print">Imprimer le QR Code</span>
-            </button>
-        </section>
-
-        <!-- Actualités -->
-        <section id="actualites">
-            <h2>📢 <span data-i18n="section_news">Actualités</span></h2>
-            <div id="newsContainer">
-                <!-- Loaded from config.json -->
-            </div>
-        </section>
-
-        <!-- Règlement -->
-        <section id="reglement">
-            <h2>📋 <span data-i18n="section_rules">Règlement Intérieur</span></h2>
-            <ul class="rules-list" id="rulesList">
-                <li><span class="icon">🍳</span><span data-i18n="rule_kitchen">La cuisine est accessible de <strong id="ruleKitchenHours">08h-22h</strong>.</span></li>
-                <li><span class="icon">🍽️</span><span data-i18n="rule_meals">Les repas se prennent entre <strong id="ruleMealHours">11h-14h et 18h-21h</strong>.</span></li>
-                <li><span class="icon">🚿</span><span data-i18n="rule_shower">Chaque résident dispose d'une douche dans sa chambre.</span></li>
-                <li><span class="icon">🧺</span><span data-i18n="rule_laundry">Une machine à laver et un sèche-linge sont disponibles (gratuits).</span></li>
-                <li><span class="icon">🔑</span><span data-i18n="rule_keys">Les clés sont personnelles et ne doivent pas être prêtées.</span></li>
-                <li><span class="icon">🚭</span><span data-i18n="rule_smoking">Interdiction de fumer à l'intérieur du bâtiment.</span></li>
-                <li><span class="icon">🍺</span><span data-i18n="rule_alcohol">L'alcool et les drogues sont strictement interdits.</span></li>
-                <li><span class="icon">🐕</span><span data-i18n="rule_pets">Les animaux de compagnie ne sont pas autorisés.</span></li>
-                <li><span class="icon">🤝</span><span data-i18n="rule_respect">Respectez les autres résidents et le personnel.</span></li>
-                <li><span class="icon">🤫</span><span data-i18n="rule_silence">Silence à partir de <strong id="ruleSilenceHour">23h</strong>.</span></li>
-                <li><span class="icon">🚪</span><span data-i18n="rule_visitors">Les visiteurs ne sont pas autorisés dans les chambres.</span></li>
-            </ul>
-        </section>
-
-        <!-- Contact -->
-        <section id="contact">
-            <h2>📞 <span data-i18n="section_contact">Contact</span></h2>
-            
-            <div class="direct-contact">
-                <a href="tel:" id="btnCall" class="contact-btn phone">📞 <span data-i18n="btn_call">Appeler</span></a>
-                <a href="sms:" id="btnSms" class="contact-btn sms">💬 SMS</a>
-                <a href="https://wa.me/" id="btnWhatsapp" class="contact-btn whatsapp" target="_blank">📱 WhatsApp</a>
-            </div>
-            
-            <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" style="margin-top:25px;">
-                <input type="text" name="name" placeholder="Votre nom" data-i18n-placeholder="form_name" required>
-                <input type="text" name="room" placeholder="Numéro de chambre" data-i18n-placeholder="form_room">
-                <select name="subject">
-                    <option value="" data-i18n="form_subject">Sujet de la demande</option>
-                    <option value="maintenance" data-i18n="form_maintenance">Problème technique</option>
-                    <option value="question" data-i18n="form_question">Question</option>
-                    <option value="suggestion" data-i18n="form_suggestion">Suggestion</option>
-                    <option value="other" data-i18n="form_other">Autre</option>
+            <nav class="nav-links">
+                <a href="#sec_security">🛡️ <span id="nav_security">Sécurité</span></a>
+                <a href="#sec_hygiene">🧹 <span id="nav_hygiene">Hygiène</span></a>
+                <a href="#sec_common">🍽️ <span id="nav_common">Cuisine</span></a>
+                <a href="#sec_laundry">🧺 <span id="nav_laundry">Linge</span></a>
+                <a href="#sec_community">🤝 <span id="nav_community">Vie commune</span></a>
+            </nav>
+            <div class="lang-selector">
+                <span class="lang-icon">🌍</span>
+                <select id="langSelect" onchange="changeLanguage()">
+                    <option value="fr">Français</option>
+                    <option value="en">English</option>
+                    <option value="ru">Русский</option>
+                    <option value="ar">العربية</option>
+                    <option value="ka">ქართული</option>
+                    <option value="hy">Հայdelays</option>
                 </select>
-                <textarea name="message" rows="4" placeholder="Votre message" data-i18n-placeholder="form_message" required></textarea>
-                <button type="submit" data-i18n="form_send">📤 Envoyer</button>
-            </form>
-        </section>
-
-        <!-- Footer -->
-        <footer>
-            <p>© 2025 Saint-Eloi - <span data-i18n="footer_rights">Tous droits réservés</span></p>
-            <p style="margin-top:10px;">
-                <span data-i18n="footer_manager">Responsable</span> : <strong id="managerName">--</strong> 
-                - <a href="tel:" id="managerPhone">--</a>
-            </p>
-        </footer>
-    </div>
-
-    <!-- Chatbot -->
-    <div class="chatbot">
-        <div class="chat-window" id="chatWindow">
-            <div class="chat-header">💬 <span data-i18n="chat_title">Assistant Saint-Eloi</span></div>
-            <div class="chat-body" id="chatBody">
-                <div class="chat-message bot" id="chatWelcome">
-                    Bonjour ! Comment puis-je vous aider ?
-                </div>
-                <div class="chat-actions">
-                    <button class="chat-action-btn" onclick="showCodes()">🔑 Codes</button>
-                    <button class="chat-action-btn" onclick="showHours()">🕐 <span data-i18n="chat_btn_hours">Horaires</span></button>
-                    <button class="chat-action-btn" onclick="showRules()">📋 <span data-i18n="chat_btn_rules">Règles</span></button>
-                    <button class="chat-action-btn" onclick="showContact()">📞 Contact</button>
-                </div>
-            </div>
-            <div class="chat-input">
-                <input type="text" id="chatInput" placeholder="Tapez votre question..." data-i18n-placeholder="chat_placeholder" onkeypress="if(event.key==='Enter')sendChat()">
-                <button onclick="sendChat()">➤</button>
             </div>
         </div>
-        <button class="chat-toggle" onclick="toggleChat()">💬</button>
     </div>
 
-    <!-- QR Code Library -->
-    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
-    
-    <script>
-        // =====================
-        // CONFIGURATION LOADER
-        // =====================
-        let CONFIG = {};
-        let currentLang = 'fr';
+    <div class="main-layout">
         
+        <!-- COMPACT EMERGENCY BAR -->
+        <div style="width: 100%;">
+            <div class="emergency-bar">
+                <span class="em-label" id="em_label">🚨 Urgences :</span>
+                <a href="tel:15">SAMU 15</a>
+                <a href="tel:18">Pompiers 18</a>
+                <a href="tel:17">Police 17</a>
+                <a href="tel:112">Europe 112</a>
+            </div>
+        </div>
+
+        <aside class="news-column">
+            
+            <div class="card important-card">
+                <div class="important-title">🤝 <span id="imp_header">AIDE ADMINISTRATIVE</span></div>
+                <div id="imp_body">
+                    On peut vous aider pour faire des CV ou la rédaction de courriers divers. Bastien vous propose ses services de façon bénévole.
+                    <br><br>
+                    <strong>Envoyez un SMS</strong> avec votre demande pour qu'il puisse s'en occuper.
+                </div>
+            </div>
+
+            <div class="card news-card">
+                <h3 id="news_header">📢 Fil d'Actualité</h3>
+                
+                <div class="news-item">
+                    <div class="news-date">📅 <span id="news_feb_date">À venir</span></div>
+                    <div class="news-title" id="news_feb_title">Prochaine Réunion</div>
+                    <div class="news-body" id="news_feb_body">
+                        Une future réunion sera organisée <strong>fin Février</strong> avec les Travailleurs Sociaux.
+                        <br><br>
+                        <em>La date précise vous sera communiquée sur ce site 😉.</em>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-date">📅 <span id="news1_date">Information</span></div>
+                    <div class="news-title" id="news1_title">Confort & Gourmandises</div>
+                    <div class="news-body" id="news1_body">
+                        Sur la table du Hall d'entrée, des bouteilles d'eau, et parfois des gâteaux ou fruits sont installés.
+                        <br><br>
+                        <strong>Servez-vous !</strong>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-date">📅 <span id="news2_date">Janvier 2026</span></div>
+                    <div class="news-title" id="news2_title">Message de la direction</div>
+                    <div class="news-body" id="news2_body">
+                        Je remercie <strong>Armer et Abésalom</strong> pour leur présence à la réunion.
+                        <br><br>
+                        Bon début d'année, et que Dieu veille sur chacun d'entre nous 🙏.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="manager-card">
+                <div class="manager-label" id="t_resp_label">RESPONSABLE / MANAGER</div>
+                <div class="manager-name">Bastien</div>
+                <div class="manager-phone">06 13 70 38 10</div>
+                <div class="manager-actions">
+                    <a href="tel:0613703810" class="action-btn btn-call">📞 <span id="btn_call_txt">Appeler</span></a>
+                    <a href="sms:0613703810" class="action-btn btn-sms">💬 SMS</a>
+                </div>
+            </div>
+            <div class="emergency-note" id="t_emergency">
+                En cas d'urgence, n'hésitez pas à appeler. Privilégiez les SMS.
+            </div>
+        </aside>
+
+        <main class="content-column card">
+            <header>
+                <h1 id="t_title">Règlement Intérieur</h1>
+                <p id="t_intro" class="subtitle" style="text-align:center; font-size: 0.95em;">Afin de garantir le confort et la tranquillité de tous, merci de respecter ces règles.</p>
+            </header>
+
+            <div class="flexibility-note" id="t_flexibility">
+                ℹ️ Note : Toutes les règles peuvent être adaptées si besoin. Demandez à la direction.
+            </div>
+
+            <section id="sec_security"><h2 id="h_security">🛡️ 1. SÉCURITÉ ET ACCÈS</h2><ul id="l_security">
+                <li><strong>Accès réservé :</strong> L'accès est strictement réservé aux résidents. Les visites extérieures sont interdites sauf autorisation.</li>
+                <li><strong>Sécurité du portail :</strong> Le code est strictement personnel. Le portail doit rester fermé après chaque passage.</li>
+            </ul></section>
+
+            <section id="sec_hygiene"><h2 id="h_hygiene">🧹 2. HYGIÈNE ET ENTRETIEN</h2><ul id="l_hygiene">
+                <li><strong>Propreté :</strong> Les chambres doivent être maintenues propres. Les poubelles doivent être vidées chaque semaine.</li>
+                <li><strong>Aération et Tabac :</strong> Il est interdit de fumer dans les chambres. Aérez quotidiennement.</li>
+                <li><strong>Nourriture :</strong> Il est interdit de cuisiner dans les chambres. Pas de stockage de denrées périssables.</li>
+                <li><strong>Chauffage :</strong> Radiateurs max 21°C. Interdit de sécher du linge sur les radiateurs.</li>
+            </ul></section>
+
+            <section id="sec_common"><h2 id="h_common">🍽️ 3. ESPACES COMMUNS & CUISINE</h2><ul id="l_common">
+                <li><strong>Respect des lieux :</strong> Les parties communes doivent être nettoyées après utilisation.</li>
+                <li><strong>Cuisine partagée :</strong> Accès 08h00-22h00. Créneaux cuisine : 11h-14h et 18h-21h.</li>
+                <li>La vaisselle doit être faite et rangée après chaque repas.</li>
+            </ul></section>
+
+            <section id="sec_laundry"><h2 id="h_laundry">🧺 4. LINGE ET BUANDERIE</h2><ul id="l_laundry">
+                <li><strong>Draps :</strong> Changement le week-end. Draps sales dans le sac prévu.</li>
+                <li><strong>Machines :</strong> 1 fois/semaine par personne. Vêtements personnels uniquement.</li>
+            </ul></section>
+
+            <section id="sec_community"><h2 id="h_community">🤝 5. VIE EN COMMUNAUTÉ</h2><ul id="l_community">
+                <li><strong>Savoir-vivre :</strong> Tenue correcte et politesse appréciées.</li>
+                <li><strong>Tranquillité :</strong> Silence à partir de 23h00.</li>
+                <li><strong>Respect d'autrui :</strong> Vol interdit. Respectez le personnel.</li>
+                <li><strong>Appareils électriques :</strong> Soumis à autorisation préalable.</li>
+            </ul></section>
+            
+            <div class="participation-note">
+                <strong id="h_volunteer">Participation :</strong> 
+                <span id="p_volunteer">Pour ceux qui le souhaitent, il est possible de participer à la vie du lieu sur simple demande.</span>
+            </div>
+            
+            <section><h2 id="h_departure">🚪 6. DÉPART</h2><ul id="l_departure">
+                <li>Le jour du départ, la chambre doit être libérée à <strong>11h00 maximum</strong>.</li>
+            </ul></section>
+
+            <div class="warning-box" id="t_warning">
+                LE NON-RESPECT DE CES RÈGLES ENTRAÎNERA UNE EXPULSION DÉFINITIVE, SANS PRÉAVIS NI REMBOURSEMENT.
+            </div>
+
+            <div class="form-section">
+                <h2 id="f_title">✉️ Formulaire de Contact</h2>
+                <p id="f_desc" style="font-size: 0.9em;">Signaler un dysfonctionnement ou faire une demande.</p>
+                <form action="https://formspree.io/f/mpqqwbwp" method="POST">
+                    <div class="form-group">
+                        <label id="f_email_l">Votre Email</label>
+                        <input type="email" name="email" required placeholder="exemple@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label id="f_name_l">Nom / Chambre</label>
+                        <input type="text" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label id="f_type_l">Type de demande</label>
+                        <select name="type" class="form-control">
+                            <option value="info">Information</option>
+                            <option value="probleme">Dysfonctionnement / Problème</option>
+                            <option value="autre">Autre</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label id="f_msg_l">Message</label>
+                        <textarea name="message" rows="3" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn" id="f_btn">Envoyer</button>
+                </form>
+            </div>
+            
+            <div class="footer">
+                <p id="t_sign">La Direction</p>
+                <p class="footer-quote" id="t_footer_quote">Créé avec empathie pour le confort et la sécurité de tous.</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- ENHANCED CHATBOT -->
+    <div class="chat-widget" id="chatWidget">
+        <div class="chat-header" onclick="toggleChat()">
+            <span id="chatTitle">🤖 Aide / Help</span>
+            <span id="chatArrow">▼</span>
+        </div>
+        <div class="chat-body" id="chatBody">
+            <div class="message bot" id="chatWelcome">Bonjour ! Comment puis-je vous aider ?</div>
+            <div class="chat-actions" id="chatActions">
+                <button onclick="showCodes()">🔑 Codes</button>
+                <button onclick="showHours()">🕐 Horaires</button>
+                <button onclick="showRules()">📋 Règles</button>
+                <button onclick="showContact()">📞 Contact</button>
+            </div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" id="userChatInput" placeholder="Tapez ici..." onkeypress="if(event.key==='Enter')handleUserChat()">
+            <button onclick="handleUserChat()">OK</button>
+        </div>
+    </div>
+
+    <script>
+        // ===== TRANSLATION DATA =====
+        const translations = {
+            fr: {
+                title: "Règlement Intérieur",
+                intro: "Afin de garantir le confort et la tranquillité de tous, merci de respecter ces règles.",
+                nav_security: "Sécurité", nav_hygiene: "Hygiène", nav_common: "Cuisine", nav_laundry: "Linge", nav_community: "Vie commune",
+                em_label: "🚨 Urgences :",
+                h_security: "🛡️ 1. SÉCURITÉ ET ACCÈS",
+                l_security: `<li><strong>Accès réservé :</strong> L'accès est strictement réservé aux résidents. Les visites extérieures sont interdites sauf autorisation.</li>
+                             <li><strong>Sécurité du portail :</strong> Le code est strictement personnel. Le portail doit rester fermé après chaque passage.</li>`,
+                h_hygiene: "🧹 2. HYGIÈNE ET ENTRETIEN",
+                l_hygiene: `<li><strong>Propreté :</strong> Les chambres doivent être maintenues propres. Les poubelles doivent être vidées chaque semaine.</li>
+                            <li><strong>Aération et Tabac :</strong> Il est interdit de fumer dans les chambres. Aérez quotidiennement.</li>
+                            <li><strong>Nourriture :</strong> Il est interdit de cuisiner dans les chambres. Pas de stockage de denrées périssables.</li>
+                            <li><strong>Chauffage :</strong> Radiateurs max 21°C. Interdit de sécher du linge sur les radiateurs.</li>`,
+                h_common: "🍽️ 3. ESPACES COMMUNS & CUISINE",
+                l_common: `<li><strong>Respect des lieux :</strong> Les parties communes doivent être nettoyées après utilisation.</li>
+                           <li><strong>Cuisine partagée :</strong> Accès 08h00-22h00. Créneaux cuisine : 11h-14h et 18h-21h.</li>
+                           <li>La vaisselle doit être faite et rangée après chaque repas.</li>`,
+                h_laundry: "🧺 4. LINGE ET BUANDERIE",
+                l_laundry: `<li><strong>Draps :</strong> Changement le week-end. Draps sales dans le sac prévu.</li>
+                            <li><strong>Machines :</strong> 1 fois/semaine par personne. Vêtements personnels uniquement.</li>`,
+                h_community: "🤝 5. VIE EN COMMUNAUTÉ",
+                l_community: `<li><strong>Savoir-vivre :</strong> Tenue correcte et politesse appréciées.</li>
+                              <li><strong>Tranquillité :</strong> Silence à partir de 23h00.</li>
+                              <li><strong>Respect d'autrui :</strong> Vol interdit. Respectez le personnel.</li>
+                              <li><strong>Appareils électriques :</strong> Soumis à autorisation préalable.</li>`,
+                h_departure: "🚪 6. DÉPART",
+                l_departure: `<li>Le jour du départ, la chambre doit être libérée à <strong>11h00 maximum</strong>.</li>`,
+                resp_label: "RESPONSABLE / MANAGER", btn_call: "Appeler",
+                emergency: "En cas d'urgence, n'hésitez pas à appeler. Privilégiez les SMS.",
+                flexibility: "ℹ️ Note : Toutes les règles peuvent être adaptées si besoin. Demandez à la direction.",
+                h_volunteer: "Participation :", p_volunteer: "Pour ceux qui le souhaitent, il est possible de participer à la vie du lieu sur simple demande.",
+                warning: "LE NON-RESPECT DE CES RÈGLES ENTRAÎNERA UNE EXPULSION DÉFINITIVE, SANS PRÉAVIS NI REMBOURSEMENT.",
+                f_title: "✉️ Formulaire de Contact", f_desc: "Signaler un dysfonctionnement ou faire une demande.",
+                f_email_l: "Votre Email", f_name: "Nom / Chambre", f_type: "Type de demande", f_msg: "Message", f_btn: "Envoyer",
+                sign: "La Direction", footer_quote: "Créé avec empathie pour le confort et la sécurité de tous.",
+                news_header: "📢 Fil d'Actualité",
+                news_feb_date: "23 Février", news_feb_title: "Réunion d'information", news_feb_body: "La réunion d'information aura lieu le <strong>lundi 23 février à 10h</strong> autour d'un moment de partage chaleureux et convivial.<br><br><em>Merci par avance de votre présence. 🙏</em>",
+                news1_date: "Information", news1_title: "Confort & Gourmandises", news1_body: "Sur la table du Hall d'entrée, des bouteilles d'eau, et parfois des gâteaux ou fruits sont installés.<br><br><strong>Servez-vous !</strong>",
+                news2_date: "Janvier 2026", news2_title: "Message de la direction", news2_body: "Je remercie <strong>Armer et Abésalom</strong> pour leur présence à la réunion.<br><br>Bon début d'année, et que Dieu veille sur chacun d'entre nous 🙏.",
+                imp_header: "AIDE ADMINISTRATIVE", imp_body: "On peut vous aider pour faire des CV ou la rédaction de courriers divers. Bastien vous propose ses services de façon bénévole.<br><br><strong>Envoyez un SMS</strong> avec votre demande pour qu'il puisse s'en occuper.",
+                chat_welcome: "Bonjour ! Comment puis-je vous aider ?",
+                chat_codes: "<strong>🔑 CODES</strong><br>🚪 Portail : <strong>78965</strong><br>📶 Wi-Fi (livebox-4988) : <strong>mayleen34090</strong>",
+                chat_hours: "<strong>🕐 HORAIRES</strong><br>🍳 Cuisine : 08h-22h<br>🍽️ Repas : 11h-14h & 18h-21h<br>🤫 Silence : dès 23h",
+                chat_rules: "<strong>📋 RÈGLES IMPORTANTES</strong><br>🚭 Pas de fumée dans les chambres<br>🚪 Portail toujours fermé<br>🧹 Vaisselle après chaque repas",
+                chat_contact: "<strong>📞 CONTACT</strong><br>👤 Bastien<br>📱 06 13 70 38 10<br>💬 Privilégiez les SMS !",
+                chat_btn_codes: "🔑 Codes", chat_btn_hours: "🕐 Horaires", chat_btn_rules: "📋 Règles", chat_btn_contact: "📞 Contact",
+                chat_more: "Autre chose ?"
+            },
+            en: {
+                title: "Internal Regulations",
+                intro: "To ensure the comfort and tranquility of all, please respect these rules.",
+                nav_security: "Security", nav_hygiene: "Hygiene", nav_common: "Kitchen", nav_laundry: "Laundry", nav_community: "Community",
+                em_label: "🚨 Emergency:",
+                h_security: "🛡️ 1. SECURITY AND ACCESS",
+                l_security: `<li><strong>Reserved Access:</strong> Access is strictly for residents. Outside visits are forbidden without authorization.</li>
+                             <li><strong>Gate Security:</strong> The code is strictly personal. The gate must remain closed after every passage.</li>`,
+                h_hygiene: "🧹 2. HYGIENE AND MAINTENANCE",
+                l_hygiene: `<li><strong>Cleanliness:</strong> Rooms must be kept clean. Trash cans must be emptied weekly.</li>
+                            <li><strong>Ventilation and Smoking:</strong> Smoking is forbidden in rooms. Ventilate daily.</li>
+                            <li><strong>Food:</strong> Cooking in rooms is forbidden. No perishable food storage.</li>
+                            <li><strong>Heating:</strong> Radiators max 21°C. No drying clothes on radiators.</li>`,
+                h_common: "🍽️ 3. COMMON AREAS & KITCHEN",
+                l_common: `<li><strong>Respect:</strong> Common areas must be cleaned after use.</li>
+                           <li><strong>Shared Kitchen:</strong> Access 08:00-22:00. Cooking slots: 11:00-14:00 & 18:00-21:00.</li>
+                           <li>Dishes must be washed and put away after every meal.</li>`,
+                h_laundry: "🧺 4. LAUNDRY",
+                l_laundry: `<li><strong>Sheets:</strong> Changed on weekends. Dirty sheets in designated bag.</li>
+                            <li><strong>Machines:</strong> 1 time/week per person. Personal clothes only.</li>`,
+                h_community: "🤝 5. COMMUNITY LIFE",
+                l_community: `<li><strong>Etiquette:</strong> Proper attire and politeness appreciated.</li>
+                              <li><strong>Quiet hours:</strong> Silence from 23:00.</li>
+                              <li><strong>Respect others:</strong> Theft forbidden. Respect staff.</li>
+                              <li><strong>Electric appliances:</strong> Subject to prior authorization.</li>`,
+                h_departure: "🚪 6. DEPARTURE",
+                l_departure: `<li>On departure day, room must be vacated by <strong>11:00 AM maximum</strong>.</li>`,
+                resp_label: "MANAGER", btn_call: "Call",
+                emergency: "In case of emergency, don't hesitate to call. Please prefer SMS.",
+                flexibility: "ℹ️ Note: Rules can be adapted if needed. Ask management.",
+                h_volunteer: "Participation:", p_volunteer: "For those who wish, it is possible to participate in the life of the place upon request.",
+                warning: "FAILURE TO RESPECT THESE RULES WILL RESULT IN PERMANENT EXPULSION, WITHOUT NOTICE OR REFUND.",
+                f_title: "✉️ Contact Form", f_desc: "Report an issue or make a request.",
+                f_email_l: "Your Email", f_name: "Name / Room", f_type: "Request Type", f_msg: "Message", f_btn: "Send",
+                sign: "The Management", footer_quote: "Created with empathy for the comfort and safety of all.",
+                news_header: "📢 News Feed",
+                news_feb_date: "Feb 23rd", news_feb_title: "Next Meeting", news_feb_body: "The next meeting will be held on <strong>Monday, February 23rd at 10am</strong> with Social Workers.<br><br><em>Please note this date! 📅</em>",
+                news1_date: "Information", news1_title: "Comfort & Treats", news1_body: "On the table in the entrance hall, water bottles and sometimes cakes or fruit are available.<br><br><strong>Help yourself!</strong>",
+                news2_date: "January 2026", news2_title: "Message from Management", news2_body: "I thank <strong>Armer and Abésalom</strong> for their presence at the meeting.<br><br>Happy New Year, and may God watch over each of us 🙏.",
+                imp_header: "ADMINISTRATIVE HELP", imp_body: "We can help you with CVs or writing letters. Bastien offers his services voluntarily.<br><br><strong>Send an SMS</strong> with your request.",
+                chat_welcome: "Hello! How can I help you?",
+                chat_codes: "<strong>🔑 CODES</strong><br>🚪 Gate: <strong>78965</strong><br>📶 Wi-Fi (livebox-4988): <strong>mayleen34090</strong>",
+                chat_hours: "<strong>🕐 HOURS</strong><br>🍳 Kitchen: 8am-10pm<br>🍽️ Meals: 11am-2pm & 6pm-9pm<br>🤫 Quiet: from 11pm",
+                chat_rules: "<strong>📋 KEY RULES</strong><br>🚭 No smoking in rooms<br>🚪 Gate always closed<br>🧹 Dishes after every meal",
+                chat_contact: "<strong>📞 CONTACT</strong><br>👤 Bastien<br>📱 06 13 70 38 10<br>💬 Prefer SMS!",
+                chat_btn_codes: "🔑 Codes", chat_btn_hours: "🕐 Hours", chat_btn_rules: "📋 Rules", chat_btn_contact: "📞 Contact",
+                chat_more: "Anything else?"
+            },
+            ru: {
+                title: "Внутренний регламент",
+                intro: "Для комфорта и спокойствия всех, пожалуйста, соблюдайте эти правила.",
+                nav_security: "Безопасность", nav_hygiene: "Гигиена", nav_common: "Кухня", nav_laundry: "Прачечная", nav_community: "Сообщество",
+                em_label: "🚨 Экстренные службы:",
+                h_security: "🛡️ 1. БЕЗОПАСНОСТЬ И ДОСТУП",
+                l_security: `<li><strong>Ограниченный доступ:</strong> Доступ строго для жильцов. Внешние визиты запрещены без разрешения.</li>
+                             <li><strong>Безопасность ворот:</strong> Код строго личный. Ворота должны быть закрыты после каждого прохода.</li>`,
+                h_hygiene: "🧹 2. ГИГИЕНА И КОМНАТЫ",
+                l_hygiene: `<li><strong>Чистота:</strong> Комнаты должны содержаться в чистоте. Мусор выносить еженедельно.</li>
+                            <li><strong>Курение:</strong> ЗАПРЕЩЕНО курить в комнатах. Проветривайте ежедневно.</li>
+                            <li><strong>Еда:</strong> Запрещено готовить в комнатах. Нет хранения скоропортящихся продуктов.</li>
+                            <li><strong>Отопление:</strong> Батареи макс. 21°C. Запрещено сушить белье на батареях.</li>`,
+                h_common: "🍽️ 3. ОБЩИЕ ЗОНЫ И КУХНЯ",
+                l_common: `<li><strong>Уважение к месту:</strong> Общие зоны должны быть убраны после использования.</li>
+                           <li><strong>Общая кухня:</strong> Доступ 08:00-22:00. Время готовки: 11:00-14:00 и 18:00-21:00.</li>
+                           <li>Посуда должна быть вымыта и убрана после каждой еды.</li>`,
+                h_laundry: "🧺 4. ПРАЧЕЧНАЯ",
+                l_laundry: `<li><strong>Постельное белье:</strong> Смена по выходным. Грязное белье в специальный мешок.</li>
+                            <li><strong>Стиральные машины:</strong> 1 раз в неделю на человека. Только личная одежда.</li>`,
+                h_community: "🤝 5. ЖИЗНЬ В СООБЩЕСТВЕ",
+                l_community: `<li><strong>Этикет:</strong> Опрятная одежда и вежливость приветствуются.</li>
+                              <li><strong>Тишина:</strong> С 23:00.</li>
+                              <li><strong>Уважение к другим:</strong> Кража запрещена. Уважайте персонал.</li>
+                              <li><strong>Электроприборы:</strong> Требуется предварительное разрешение.</li>`,
+                h_departure: "🚪 6. ВЫЕЗД",
+                l_departure: `<li>В день выезда комнату нужно освободить <strong>максимум до 11:00</strong>.</li>`,
+                resp_label: "УПРАВЛЯЮЩИЙ", btn_call: "Позвонить",
+                emergency: "В экстренных случаях звоните. Предпочтительно СМС.",
+                flexibility: "ℹ️ Примечание: Правила могут быть адаптированы. Спрашивайте у администрации.",
+                h_volunteer: "Участие:", p_volunteer: "Желающие могут участвовать в жизни заведения по простому запросу.",
+                warning: "НЕСОБЛЮДЕНИЕ ЭТИХ ПРАВИЛ ВЛЕЧЕТ ЗА СОБОЙ ОКОНЧАТЕЛЬНОЕ ВЫСЕЛЕНИЕ БЕЗ ПРЕДУПРЕЖДЕНИЯ И ВОЗВРАТА СРЕДСТВ.",
+                f_title: "✉️ Контактная форма", f_desc: "Сообщить о проблеме или запросить информацию.",
+                f_email_l: "Ваш Email", f_name: "Имя / Комната", f_type: "Тип запроса", f_msg: "Сообщение", f_btn: "Отправить",
+                sign: "Администрация", footer_quote: "Создано с эмпатией для комфорта и безопасности всех.",
+                news_header: "📢 Новости",
+                news_feb_date: "23 февраля", news_feb_title: "Следующее собрание", news_feb_body: "Следующее собрание состоится в <strong>понедельник, 23 февраля в 10:00</strong> с социальными работниками.<br><br><em>Пожалуйста, запишите эту дату! 📅</em>",
+                news1_date: "Информация", news1_title: "Комфорт и Угощения", news1_body: "На столе в холле есть вода, а иногда печенье или фрукты.<br><br><strong>Угощайтесь!</strong>",
+                news2_date: "Январь 2026", news2_title: "Сообщение от администрации", news2_body: "Благодарю <strong>Armer и Abésalom</strong> за присутствие на собрании.<br><br>С Новым годом, и пусть Бог хранит каждого из нас 🙏.",
+                imp_header: "ПОМОЩЬ С ДОКУМЕНТАМИ", imp_body: "Мы можем помочь с резюме или письмами. Бастьен предлагает свои услуги бесплатно.<br><br><strong>Отправьте СМС</strong> с вашим запросом.",
+                chat_welcome: "Здравствуйте! Чем могу помочь?",
+                chat_codes: "<strong>🔑 КОДЫ</strong><br>🚪 Ворота: <strong>78965</strong><br>📶 Wi-Fi (livebox-4988): <strong>mayleen34090</strong>",
+                chat_hours: "<strong>🕐 ЧАСЫ РАБОТЫ</strong><br>🍳 Кухня: 08:00-22:00<br>🍽️ Еда: 11:00-14:00 и 18:00-21:00<br>🤫 Тишина: с 23:00",
+                chat_rules: "<strong>📋 ВАЖНЫЕ ПРАВИЛА</strong><br>🚭 Нет курению в комнатах<br>🚪 Ворота всегда закрыты<br>🧹 Посуда после каждой еды",
+                chat_contact: "<strong>📞 КОНТАКТ</strong><br>👤 Бастьен<br>📱 06 13 70 38 10<br>💬 Предпочтительно СМС!",
+                chat_btn_codes: "🔑 Коды", chat_btn_hours: "🕐 Часы", chat_btn_rules: "📋 Правила", chat_btn_contact: "📞 Контакт",
+                chat_more: "Что-нибудь ещё?"
+            },
+            ar: {
+                title: "النظام الداخلي",
+                intro: "لضمان راحة وهدوء الجميع، يرجى احترام هذه القواعد.",
+                nav_security: "الأمان", nav_hygiene: "النظافة", nav_common: "المطبخ", nav_laundry: "الغسيل", nav_community: "الحياة الجماعية",
+                em_label: "🚨 طوارئ:",
+                h_security: "🛡️ 1. الأمن والدخول",
+                l_security: `<li><strong>الدخول مخصص:</strong> الدخول للمقيمين فقط. الزيارات الخارجية ممنوعة إلا بإذن.</li>
+                             <li><strong>أمن البوابة:</strong> الرمز شخصي للغاية. يجب إغلاق البوابة بعد كل مرور.</li>`,
+                h_hygiene: "🧹 2. النظافة والغرف",
+                l_hygiene: `<li><strong>النظافة:</strong> يجب الحفاظ على نظافة الغرف. إفراغ سلال المهملات أسبوعياً.</li>
+                            <li><strong>التدخين:</strong> ممنوع منعاً باتاً في الغرف. قم بتهوية الغرفة يومياً.</li>
+                            <li><strong>الطعام:</strong> ممنوع الطبخ في الغرف. لا تخزين للأطعمة القابلة للتلف.</li>
+                            <li><strong>التدفئة:</strong> المشعاعات بحد أقصى 21 درجة. ممنوع تجفيف الملابس على المشعاعات.</li>`,
+                h_common: "🍽️ 3. الأماكن المشتركة والمطبخ",
+                l_common: `<li><strong>احترام المكان:</strong> يجب تنظيف الأماكن المشتركة بعد الاستخدام.</li>
+                           <li><strong>المطبخ المشترك:</strong> الدخول من 08:00 إلى 22:00. أوقات الطبخ: 11:00-14:00 و 18:00-21:00.</li>
+                           <li>يجب غسل الأطباق وترتيبها بعد كل وجبة.</li>`,
+                h_laundry: "🧺 4. الغسيل",
+                l_laundry: `<li><strong>الملاءات:</strong> التغيير في عطلة نهاية الأسبوع. الملاءات المتسخة في الكيس المخصص.</li>
+                            <li><strong>الغسالات:</strong> مرة واحدة/أسبوع لكل شخص. الملابس الشخصية فقط.</li>`,
+                h_community: "🤝 5. الحياة الجماعية",
+                l_community: `<li><strong>الآداب:</strong> الملابس اللائقة والتهذيب موضع تقدير.</li>
+                              <li><strong>الهدوء:</strong> الصمت ابتداءً من 23:00.</li>
+                              <li><strong>احترام الآخرين:</strong> السرقة ممنوعة. احترم الموظفين.</li>
+                              <li><strong>الأجهزة الكهربائية:</strong> تخضع لإذن مسبق.</li>`,
+                h_departure: "🚪 6. المغادرة",
+                l_departure: `<li>يوم المغادرة، يجب إخلاء الغرفة في الساعة <strong>11:00 صباحاً كحد أقصى</strong>.</li>`,
+                resp_label: "المسؤول / المدير", btn_call: "اتصل",
+                emergency: "في حالات الطوارئ، اتصل. يفضل الرسائل النصية.",
+                flexibility: "ℹ️ ملاحظة: يمكن تعديل القواعد عند الضرورة. اسأل الإدارة.",
+                h_volunteer: "المشاركة:", p_volunteer: "لمن يرغب، يمكن المشاركة في حياة المكان عند الطلب البسيط.",
+                warning: "عدم الالتزام بهذه القواعد سيؤدي إلى الطرد النهائي، دون إشعار أو استرداد للمال.",
+                f_title: "✉️ نموذج الاتصال", f_desc: "للإبلاغ عن مشكلة أو طلب معلومات.",
+                f_email_l: "بريدك الالكتروني", f_name: "الاسم / الغرفة", f_type: "نوع الطلب", f_msg: "الرسالة", f_btn: "إرسال",
+                sign: "الإدارة", footer_quote: "تم إنشاؤه بتعاطف لراحة وسلامة الجميع.",
+                news_header: "📢 الأخبار",
+                news_feb_date: "23 فبراير", news_feb_title: "الاجتماع القادم", news_feb_body: "سيعقد الاجتماع القادم يوم <strong>الاثنين 23 فبراير الساعة 10 صباحاً</strong> مع الأخصائيين الاجتماعيين.<br><br><em>يرجى تدوين هذا التاريخ! 📅</em>",
+                news1_date: "معلومات", news1_title: "الراحة والضيافة", news1_body: "على الطاولة في المدخل، توجد زجاجات ماء، وأحياناً كعك أو فواكه.<br><br><strong>تفضلوا!</strong>",
+                news2_date: "يناير 2026", news2_title: "رسالة من الإدارة", news2_body: "أشكر <strong>Armer و Abésalom</strong> على حضورهم الاجتماع.<br><br>بداية عام سعيدة، والله يحفظ كل واحد منا 🙏.",
+                imp_header: "مساعدة إدارية", imp_body: "يمكننا مساعدتكم في السيرة الذاتية أو كتابة الرسائل. باستيان يقدم خدماته مجاناً.<br><br><strong>أرسل رسالة نصية</strong> بطلبك.",
+                chat_welcome: "مرحباً! كيف يمكنني مساعدتك؟",
+                chat_codes: "<strong>🔑 الرموز</strong><br>🚪 البوابة: <strong>78965</strong><br>📶 واي فاي (livebox-4988): <strong>mayleen34090</strong>",
+                chat_hours: "<strong>🕐 الأوقات</strong><br>🍳 المطبخ: 08:00-22:00<br>🍽️ الوجبات: 11:00-14:00 و 18:00-21:00<br>🤫 الهدوء: من 23:00",
+                chat_rules: "<strong>📋 قواعد مهمة</strong><br>🚭 ممنوع التدخين في الغرف<br>🚪 البوابة مغلقة دائماً<br>🧹 غسل الأطباق بعد كل وجبة",
+                chat_contact: "<strong>📞 الاتصال</strong><br>👤 باستيان<br>📱 06 13 70 38 10<br>💬 يفضل الرسائل النصية!",
+                chat_btn_codes: "🔑 الرموز", chat_btn_hours: "🕐 الأوقات", chat_btn_rules: "📋 القواعد", chat_btn_contact: "📞 الاتصال",
+                chat_more: "شيء آخر؟"
+            },
+            ka: {
+                title: "შიდა რეგლამენტი",
+                intro: "ყველას კომფორტისა და სიმშვიდისთვის, გთხოვთ დაიცვათ ეს წესები.",
+                nav_security: "უსაფრთხოება", nav_hygiene: "ჰიგიენა", nav_common: "სამზარეულო", nav_laundry: "სამრეცხაო", nav_community: "საზოგადოება",
+                em_label: "🚨 გადაუდებელი:",
+                h_security: "🛡️ 1. უსაფრთხოება და დაშვება",
+                l_security: `<li><strong>დაშვება:</strong> დაშვება მხოლოდ მცხოვრებლებისთვის. გარე ვიზიტები აკრძალულია.</li>
+                             <li><strong>ჭიშკარი:</strong> კოდი მკაცრად პირადია. ჭიშკარი უნდა დაიკეტოს ყოველი გავლის შემდეგ.</li>`,
+                h_hygiene: "🧹 2. ჰიგიენა და ოთახები",
+                l_hygiene: `<li><strong>სისუფთავე:</strong> ოთახები უნდა იყოს სუფთა. ნაგავი ყოველკვირეულად.</li>
+                            <li><strong>მოწევა:</strong> აკრძალულია ოთახებში. გაანიავეთ ყოველდღიურად.</li>
+                            <li><strong>საკვები:</strong> აკრძალულია სამზარეულო ოთახებში. მალფუჭებადი პროდუქტების შენახვა აკრძალულია.</li>
+                            <li><strong>გათბობა:</strong> რადიატორები მაქს 21°C. აკრძალულია ტანსაცმლის გაშრობა რადიატორებზე.</li>`,
+                h_common: "🍽️ 3. საერთო ადგილები და სამზარეულო",
+                l_common: `<li><strong>პატივისცემა:</strong> საერთო ადგილები უნდა დასუფთავდეს გამოყენების შემდეგ.</li>
+                           <li><strong>საერთო სამზარეულო:</strong> წვდომა 08:00-22:00. სამზარეულოს დრო: 11:00-14:00 და 18:00-21:00.</li>
+                           <li>ჭურჭელი უნდა გაირეცხოს და დალაგდეს ყოველი ჭამის შემდეგ.</li>`,
+                h_laundry: "🧺 4. სამრეცხაო",
+                l_laundry: `<li><strong>თეთრეული:</strong> შეცვლა შაბათ-კვირას. ბინძური თეთრეული სპეციალურ ჩანთაში.</li>
+                            <li><strong>მანქანები:</strong> კვირაში 1-ჯერ თითო ადამიანზე. მხოლოდ პირადი ტანსაცმლისთვის.</li>`,
+                h_community: "🤝 5. თანაცხოვრება",
+                l_community: `<li><strong>ეტიკეტი:</strong> შესაბამისი ჩაცმულობა და ზრდილობა დაფასებულია.</li>
+                              <li><strong>სიჩუმე:</strong> 23:00-დან.</li>
+                              <li><strong>პატივისცემა:</strong> ქურდობა აკრძალულია. პატივი ეცით პერსონალს.</li>
+                              <li><strong>ელექტრომოწყობილობები:</strong> საჭიროებს წინასწარ ნებართვას.</li>`,
+                h_departure: "🚪 6. გასვლა",
+                l_departure: `<li>გასვლის დღეს ოთახი უნდა განთავისუფლდეს <strong>მაქსიმუმ 11:00 საათზე</strong>.</li>`,
+                resp_label: "მენეჯერი", btn_call: "დარეკვა",
+                emergency: "საგანგებო სიტუაციებში დარეკეთ. უპირატესობა SMS.",
+                flexibility: "ℹ️ შენიშვნა: წესები შეიძლება მორგებული იყოს. იკითხეთ ადმინისტრაციას.",
+                h_volunteer: "მონაწილეობა:", p_volunteer: "მსურველებს შეუძლიათ მონაწილეობა მიიღონ ადგილობრივ ცხოვრებაში მარტივი მოთხოვნის საფუძველზე.",
+                warning: "ამ წესების დარღვევა გამოიწვევს საბოლოო გაძევებას, გაფრთხილების და ანაზღაურების გარეშე.",
+                f_title: "✉️ საკონტაქტო ფორმა", f_desc: "პრობლემის შეტყობინება ან ინფორმაცია.",
+                f_email_l: "თქვენი ელ. ფოსტა", f_name: "სახელი / ოთახი", f_type: "მოთხოვნის ტიპი", f_msg: "შეტყობინება", f_btn: "გაგზავნა",
+                sign: "ადმინისტრაცია", footer_quote: "შექმნილია თანაგრძნობით ყველას კომფორტისა და უსაფრთხოებისთვის.",
+                news_header: "📢 სიახლეები",
+                news_feb_date: "23 თებერვალი", news_feb_title: "შემდეგი შეხვედრა", news_feb_body: "შემდეგი შეხვედრა გაიმართება <strong>ორშაბათს, 23 თებერვალს 10:00 საათზე</strong> სოციალურ მუშაკებთან ერთად.<br><br><em>გთხოვთ დაიმახსოვროთ ეს თარიღი! 📅</em>",
+                news1_date: "ინფორმაცია", news1_title: "კომფორტი და სასუსნავი", news1_body: "შესასვლელში მაგიდაზე დევს წყალი, ზოგჯერ ნამცხვრები ან ხილი.<br><br><strong>მიირთვით!</strong>",
+                news2_date: "იანვარი 2026", news2_title: "შეტყობინება ადმინისტრაციიდან", news2_body: "მადლობას ვუხდი <strong>Armer-ს და Abésalom-ს</strong> შეხვედრაზე დასწრებისთვის.<br><br>გილოცავთ ახალ წელს და ღმერთმა დაგლოცოთ თქვენ თითოეული 🙏.",
+                imp_header: "ადმინისტრაციული დახმარება", imp_body: "შეგვიძლია დაგეხმაროთ CV-ში ან წერილების წერაში. ბასტიენი გთავაზობთ თავის მომსახურებას უფასოდ.<br><br><strong>გამოაგზავნეთ SMS</strong> თქვენი მოთხოვნით.",
+                chat_welcome: "გამარჯობა! როგორ შემიძლია დაგეხმაროთ?",
+                chat_codes: "<strong>🔑 კოდები</strong><br>🚪 ჭიშკარი: <strong>78965</strong><br>📶 Wi-Fi (livebox-4988): <strong>mayleen34090</strong>",
+                chat_hours: "<strong>🕐 საათები</strong><br>🍳 სამზარეულო: 08:00-22:00<br>🍽️ საჭმელი: 11:00-14:00 და 18:00-21:00<br>🤫 სიჩუმე: 23:00-დან",
+                chat_rules: "<strong>📋 მნიშვნელოვანი წესები</strong><br>🚭 არა მოწევას ოთახებში<br>🚪 ჭიშკარი ყოველთვის დაკეტილი<br>🧹 ჭურჭელი ყოველი ჭამის შემდეგ",
+                chat_contact: "<strong>📞 კონტაქტი</strong><br>👤 ბასტიენი<br>📱 06 13 70 38 10<br>💬 უმჯობესია SMS!",
+                chat_btn_codes: "🔑 კოდები", chat_btn_hours: "🕐 საათები", chat_btn_rules: "📋 წესები", chat_btn_contact: "📞 კონტაქტი",
+                chat_more: "სხვა რამე?"
+            },
+            hy: {
+                title: " Delays Delays",
+                intro: "Delays delaysDaileys delays delays delays delays delays.",
+                nav_security: "Delays", nav_hygiene: "Delays", nav_common: "Delays", nav_laundry: "Delays", nav_community: "Delays",
+                em_label: "🚨 Delays:",
+                h_security: "🛡️ 1. DELAYS DELAYS",
+                l_security: `<li><strong>Delays:</strong> Delays delays delays delays. Delays delays delays delays delays.</li>
+                             <li><strong>Delays:</strong> Delays delays delays delays. Delays delays delays delays delays.</li>`,
+                h_hygiene: "🧹 2. DELAYS",
+                l_hygiene: `<li><strong>Delays:</strong> Delays delays delays. Delays delays delays.</li>
+                            <li><strong>Delays:</strong> DELAYS delays delays. Delays delays delays.</li>
+                            <li><strong>Delays:</strong> Delays delays delays delays. Delays delays.</li>
+                            <li><strong>Delays:</strong> Delays 21°C. Delays delays delays delays.</li>`,
+                h_common: "🍽️ 3. DELAYS",
+                l_common: `<li><strong>Delays:</strong> Delays delays delays delays delays.</li>
+                           <li><strong>Delays:</strong> Delays 08:00-22:00. Delays: 11:00-14:00 delays 18:00-21:00.</li>
+                           <li>Delays delays delays delays delays delays.</li>`,
+                h_laundry: "🧺 4. DELAYS",
+                l_laundry: `<li><strong>Delays:</strong> Delays delays delays. Delays delays delays.</li>
+                            <li><strong>Delays:</strong> Delays 1 delays/delays. Delays delays delays.</li>`,
+                h_community: "🤝 5. DELAYS",
+                l_community: `<li><strong>Delays:</strong> Delays delays delays delays.</li>
+                              <li><strong>Delays:</strong> Delays delays 23:00.</li>
+                              <li><strong>Delays:</strong> Delays delays. Delays delays.</li>
+                              <li><strong>Delays:</strong> Delays delays delays delays.</li>`,
+                h_departure: "🚪 6. DELAYS",
+                l_departure: `<li>Delays delays delays delays <strong>delays 11:00</strong>.</li>`,
+                resp_label: "DELAYS / MANAGER", btn_call: "Delays",
+                emergency: "Delays delays delays delays. Delays SMS.",
+                flexibility: "ℹ️ Delays: Delays delays delays delays. Delays delays.",
+                h_volunteer: "Delays:", p_volunteer: "Delays delays delays delays delays delays delays delays delays.",
+                warning: "DELAYS DELAYS DELAYS DELAYS DELAYS DELAYS DELAYS, DELAYS DELAYS DELAYS DELAYS.",
+                f_title: "✉️ Delays Delays", f_desc: "Delays delays delays delays delays.",
+                f_email_l: "Delays Email", f_name: "Delays / Delays", f_type: "Delays Delays", f_msg: "Delays", f_btn: "Delays",
+                sign: "Delays", footer_quote: "Delays delays delays delays delays delays delays.",
+                news_header: "📢 Delays",
+                news_feb_date: "Delays", news_feb_title: "Delays Delays", news_feb_body: "Delays delays delays <strong>delays delays</strong> delays delays delays.<br><br><em>Delays delays delays delays delays 😉.</em>",
+                news1_date: "Delays", news1_title: "Delays & Delays", news1_body: "Delays delays delays delays delays delays delays delays.<br><br><strong>Delays!</strong>",
+                news2_date: "Delays 2026", news2_title: "Delays delays delays", news2_body: "Delays <strong>Armer delays Abésalom</strong> delays delays delays.<br><br>Delays delays delays delays 🙏.",
+                imp_header: "DELAYS DELAYS", imp_body: "Delays delays delays CV delays delays delays. Delays delays delays delays delays.<br><br><strong>Delays SMS</strong> delays delays delays.",
+                chat_welcome: "Delays! Delays delays delays?",
+                chat_codes: "<strong>🔑 DELAYS</strong><br>🚪 Delays: <strong>78965</strong><br>📶 Wi-Fi (livebox-4988): <strong>mayleen34090</strong>",
+                chat_hours: "<strong>🕐 DELAYS</strong><br>🍳 Delays: 08:00-22:00<br>🍽️ Delays: 11:00-14:00 delays 18:00-21:00<br>🤫 Delays: delays 23:00",
+                chat_rules: "<strong>📋 DELAYS DELAYS</strong><br>🚭 Delays delays delays<br>🚪 Delays delays delays<br>🧹 Delays delays delays delays",
+                chat_contact: "<strong>📞 DELAYS</strong><br>👤 Delays<br>📱 06 13 70 38 10<br>💬 Delays SMS!",
+                chat_btn_codes: "🔑 Delays", chat_btn_hours: "🕐 Delays", chat_btn_rules: "📋 Delays", chat_btn_contact: "📞 Delays",
+                chat_more: "Delays delays?"
+            }
+        };
+
+        let currentLang = 'fr';
+
+        function changeLanguage() {
+            currentLang = document.getElementById('langSelect').value;
+            const data = translations[currentLang];
+
+            // RTL support
+            if (currentLang === 'ar') document.body.classList.add('rtl');
+            else document.body.classList.remove('rtl');
+
+            // Navigation
+            if(data.nav_security) document.getElementById('nav_security').textContent = data.nav_security;
+            if(data.nav_hygiene) document.getElementById('nav_hygiene').textContent = data.nav_hygiene;
+            if(data.nav_common) document.getElementById('nav_common').textContent = data.nav_common;
+            if(data.nav_laundry) document.getElementById('nav_laundry').textContent = data.nav_laundry;
+            if(data.nav_community) document.getElementById('nav_community').textContent = data.nav_community;
+            
+            // Emergency
+            if(data.em_label) document.getElementById('em_label').textContent = data.em_label;
+
+            // Text Updates
+            document.getElementById('t_title').textContent = data.title;
+            if(data.intro) document.getElementById('t_intro').textContent = data.intro;
+
+            document.getElementById('h_security').textContent = data.h_security;
+            document.getElementById('l_security').innerHTML = data.l_security;
+
+            document.getElementById('h_hygiene').textContent = data.h_hygiene;
+            document.getElementById('l_hygiene').innerHTML = data.l_hygiene;
+
+            document.getElementById('h_common').textContent = data.h_common;
+            document.getElementById('l_common').innerHTML = data.l_common;
+
+            document.getElementById('h_laundry').textContent = data.h_laundry;
+            document.getElementById('l_laundry').innerHTML = data.l_laundry;
+
+            document.getElementById('h_community').textContent = data.h_community;
+            document.getElementById('l_community').innerHTML = data.l_community;
+
+            document.getElementById('h_departure').textContent = data.h_departure;
+            document.getElementById('l_departure').innerHTML = data.l_departure;
+            
+            document.getElementById('t_resp_label').textContent = data.resp_label;
+            document.getElementById('btn_call_txt').textContent = data.btn_call;
+            document.getElementById('t_emergency').textContent = data.emergency;
+            document.getElementById('t_flexibility').textContent = data.flexibility;
+            
+            document.getElementById('h_volunteer').textContent = data.h_volunteer;
+            document.getElementById('p_volunteer').textContent = data.p_volunteer;
+            
+            document.getElementById('t_warning').textContent = data.warning;
+            
+            document.getElementById('t_sign').textContent = data.sign;
+            document.getElementById('t_footer_quote').textContent = data.footer_quote;
+
+            // Form Updates
+            document.getElementById('f_title').textContent = data.f_title;
+            document.getElementById('f_desc').textContent = data.f_desc;
+            document.getElementById('f_email_l').textContent = data.f_email_l;
+            document.getElementById('f_name_l').textContent = data.f_name;
+            document.getElementById('f_type_l').textContent = data.f_type;
+            document.getElementById('f_msg_l').textContent = data.f_msg;
+            document.getElementById('f_btn').textContent = data.f_btn;
+
+            // News Updates
+            document.getElementById('news_header').textContent = data.news_header;
+            document.getElementById('news_feb_date').textContent = data.news_feb_date;
+            document.getElementById('news_feb_title').textContent = data.news_feb_title;
+            document.getElementById('news_feb_body').innerHTML = data.news_feb_body;
+            document.getElementById('news1_date').textContent = data.news1_date;
+            document.getElementById('news1_title').textContent = data.news1_title;
+            document.getElementById('news1_body').innerHTML = data.news1_body;
+            document.getElementById('news2_date').textContent = data.news2_date;
+            document.getElementById('news2_title').textContent = data.news2_title;
+            document.getElementById('news2_body').innerHTML = data.news2_body;
+            document.getElementById('imp_header').textContent = data.imp_header;
+            document.getElementById('imp_body').innerHTML = data.imp_body;
+
+            // Reset chat
+            resetChat();
+        }
+
+        // ===== ENHANCED CHATBOT =====
+        function toggleChat() {
+            const widget = document.getElementById('chatWidget');
+            widget.classList.toggle('chat-open');
+            const arrow = document.getElementById('chatArrow');
+            arrow.textContent = widget.classList.contains('chat-open') ? '▲' : '▼';
+        }
+
+        function resetChat() {
+            const data = translations[currentLang];
+            const chatBody = document.getElementById('chatBody');
+            chatBody.innerHTML = `
+                <div class="message bot">${data.chat_welcome}</div>
+                <div class="chat-actions" id="chatActions">
+                    <button onclick="showCodes()">${data.chat_btn_codes}</button>
+                    <button onclick="showHours()">${data.chat_btn_hours}</button>
+                    <button onclick="showRules()">${data.chat_btn_rules}</button>
+                    <button onclick="showContact()">${data.chat_btn_contact}</button>
+                </div>
+            `;
+        }
+
+        function addBotMessage(html, showMore = true) {
+            const data = translations[currentLang];
+            const chatBody = document.getElementById('chatBody');
+            
+            const msgDiv = document.createElement('div');
+            msgDiv.className = 'chat-info-box';
+            msgDiv.innerHTML = html;
+            chatBody.appendChild(msgDiv);
+
+            if (showMore) {
+                const moreDiv = document.createElement('div');
+                moreDiv.className = 'chat-actions';
+                moreDiv.innerHTML = `
+                    <button onclick="showCodes()">${data.chat_btn_codes}</button>
+                    <button onclick="showHours()">${data.chat_btn_hours}</button>
+                    <button onclick="showRules()">${data.chat_btn_rules}</button>
+                    <button onclick="showContact()">${data.chat_btn_contact}</button>
+                `;
+                chatBody.appendChild(moreDiv);
+            }
+
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        function showCodes() {
+            const data = translations[currentLang];
+            addBotMessage(data.chat_codes);
+        }
+
+        function showHours() {
+            const data = translations[currentLang];
+            addBotMessage(data.chat_hours);
+        }
+
+        function showRules() {
+            const data = translations[currentLang];
+            addBotMessage(data.chat_rules);
+        }
+
+        function showContact() {
+            const data = translations[currentLang];
+            addBotMessage(data.chat_contact);
+        }
+
+        function handleUserChat() {
+            const input = document.getElementById('userChatInput');
+            const txt = input.value.toLowerCase().trim();
+            if (txt === "") return;
+
+            const chatBody = document.getElementById('chatBody');
+            const data = translations[currentLang];
+
+            // User message
+            const userMsg = document.createElement('div');
+            userMsg.className = 'message user';
+            userMsg.textContent = input.value;
+            chatBody.appendChild(userMsg);
+            input.value = "";
+
+            // Bot response based on keywords
+            setTimeout(() => {
+                if (txt.includes('code') || txt.includes('wifi') || txt.includes('portail') || txt.includes('gate') || txt.includes('пароль') || txt.includes('كود')) {
+                    addBotMessage(data.chat_codes);
+                } else if (txt.includes('heure') || txt.includes('hour') || txt.includes('horaire') || txt.includes('время') || txt.includes('وقت')) {
+                    addBotMessage(data.chat_hours);
+                } else if (txt.includes('règle') || txt.includes('rule') || txt.includes('interdit') || txt.includes('правил') || txt.includes('قواعد')) {
+                    addBotMessage(data.chat_rules);
+                } else if (txt.includes('contact') || txt.includes('téléphone') || txt.includes('phone') || txt.includes('bastien') || txt.includes('телефон') || txt.includes('اتصال')) {
+                    addBotMessage(data.chat_contact);
+                } else {
+                    const botMsg = document.createElement('div');
+                    botMsg.className = 'message bot';
+                    botMsg.textContent = data.chat_more;
+                    chatBody.appendChild(botMsg);
+                    
+                    const moreDiv = document.createElement('div');
+                    moreDiv.className = 'chat-actions';
+                    moreDiv.innerHTML = `
+                        <button onclick="showCodes()">${data.chat_btn_codes}</button>
+                        <button onclick="showHours()">${data.chat_btn_hours}</button>
+                        <button onclick="showRules()">${data.chat_btn_rules}</button>
+                        <button onclick="showContact()">${data.chat_btn_contact}</button>
+                    `;
+                    chatBody.appendChild(moreDiv);
+                }
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }, 400);
+        }
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('.nav-links a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+
+        // ===== CHARGEMENT CONFIG.JSON =====
         async function loadConfig() {
             try {
                 const response = await fetch('config.json');
-                CONFIG = await response.json();
-                applyConfig();
-            } catch (e) {
-                console.error('Erreur chargement config:', e);
-                // Fallback avec données par défaut
-                CONFIG = {
-                    codes: { portail: "78965", wifi_reseau: "Livebox-4988", wifi_mdp: "mayleen34090" },
-                    horaires: { cuisine_ouverture: "08h00", cuisine_fermeture: "22h00", silence: "23h00" },
-                    contact: { responsable: "Bastien", telephone: "0613703810" },
-                    site: { adresse: "7 Rue Albert Leenhardt, 34000 Montpellier", derniere_maj: "2025-02-04" },
-                    actualites: []
-                };
-                applyConfig();
-            }
-        }
-        
-        function applyConfig() {
-            // Codes
-            document.getElementById('codePortail').textContent = CONFIG.codes.portail;
-            document.getElementById('codeWifi').textContent = CONFIG.codes.wifi_mdp;
-            
-            // Horaires
-            document.getElementById('horaireCuisine').textContent = 
-                CONFIG.horaires.cuisine_ouverture + ' - ' + CONFIG.horaires.cuisine_fermeture;
-            document.getElementById('heureSilence').textContent = CONFIG.horaires.silence;
-            document.getElementById('ruleKitchenHours').textContent = 
-                CONFIG.horaires.cuisine_ouverture + ' - ' + CONFIG.horaires.cuisine_fermeture;
-            document.getElementById('ruleSilenceHour').textContent = CONFIG.horaires.silence;
-            
-            // Contact
-            const tel = CONFIG.contact.telephone;
-            const telClean = tel.replace(/\s/g, '');
-            document.getElementById('managerName').textContent = CONFIG.contact.responsable;
-            document.getElementById('managerPhone').textContent = tel;
-            document.getElementById('managerPhone').href = 'tel:' + telClean;
-            document.getElementById('btnCall').href = 'tel:' + telClean;
-            document.getElementById('btnSms').href = 'sms:' + telClean;
-            document.getElementById('btnWhatsapp').href = 'https://wa.me/33' + telClean.substring(1);
-            
-            // Site info
-            document.getElementById('siteAddress').textContent = CONFIG.site.adresse;
-            document.getElementById('lastUpdate').textContent = CONFIG.site.derniere_maj;
-            
-            // Actualités
-            loadNews();
-            
-            // QR Code
-            generateQR();
-        }
-        
-        function loadNews() {
-            const container = document.getElementById('newsContainer');
-            container.innerHTML = '';
-            
-            CONFIG.actualites.filter(n => n.actif).forEach(news => {
-                const card = document.createElement('div');
-                card.className = 'news-card' + (news.important ? ' important' : '');
-                card.innerHTML = `
-                    <div class="news-date">📅 ${news.date[currentLang] || news.date.fr}</div>
-                    <div class="news-title">${news.titre[currentLang] || news.titre.fr}</div>
-                    <div class="news-body">${news.contenu[currentLang] || news.contenu.fr}</div>
-                `;
-                container.appendChild(card);
-            });
-        }
-        
-        // =====================
-        // TRANSLATIONS
-        // =====================
-        const TRANSLATIONS = {
-            fr: {
-                nav_home: "🏠 Accueil", nav_news: "📢 Actualités", nav_rules: "📋 Règlement", nav_contact: "📞 Contact",
-                emergency_label: "Urgences", install_prompt: "Installez l'application Saint-Eloi !", install_btn: "Installer",
-                last_update: "Dernière mise à jour", code_portail: "Code Portail", code_wifi: "WiFi",
-                horaires_cuisine: "Cuisine", silence: "Silence", qr_title: "Partagez ce site", 
-                qr_desc: "Scannez pour accéder au site", qr_print: "Imprimer le QR Code",
-                section_news: "Actualités", section_rules: "Règlement Intérieur", section_contact: "Contact",
-                btn_call: "Appeler", chat_title: "Assistant Saint-Eloi", chat_btn_hours: "Horaires", chat_btn_rules: "Règles",
-                chat_placeholder: "Tapez votre question...", form_name: "Votre nom", form_room: "N° chambre",
-                form_subject: "Sujet", form_send: "📤 Envoyer", footer_rights: "Tous droits réservés",
-                footer_manager: "Responsable",
-                chat_welcome: "Bonjour ! Comment puis-je vous aider ?",
-                chat_codes: "<strong>🔑 CODES D'ACCÈS</strong><br>🚪 Portail : <strong>{portail}</strong><br>📶 WiFi : <strong>{wifi_reseau}</strong><br>🔐 Mot de passe : <strong>{wifi_mdp}</strong>",
-                chat_hours: "<strong>🕐 HORAIRES</strong><br>🍳 Cuisine : {cuisine}<br>🍽️ Repas : {repas}<br>🤫 Silence : dès {silence}",
-                chat_rules: "<strong>📋 RÈGLES PRINCIPALES</strong><br>🚭 Pas de tabac à l'intérieur<br>🍺 Alcool/drogues interdits<br>🐕 Pas d'animaux<br>🚪 Pas de visiteurs en chambre",
-                chat_contact: "<strong>📞 CONTACT</strong><br>👤 Responsable : {responsable}<br>📱 Tél : <a href='tel:{tel}'>{tel}</a>"
-            },
-            en: {
-                nav_home: "🏠 Home", nav_news: "📢 News", nav_rules: "📋 Rules", nav_contact: "📞 Contact",
-                emergency_label: "Emergency", install_prompt: "Install Saint-Eloi app!", install_btn: "Install",
-                last_update: "Last update", code_portail: "Gate Code", code_wifi: "WiFi",
-                horaires_cuisine: "Kitchen", silence: "Quiet time", qr_title: "Share this site",
-                qr_desc: "Scan to access the site", qr_print: "Print QR Code",
-                section_news: "News", section_rules: "House Rules", section_contact: "Contact",
-                btn_call: "Call", chat_title: "Saint-Eloi Assistant", chat_btn_hours: "Hours", chat_btn_rules: "Rules",
-                chat_placeholder: "Type your question...", form_name: "Your name", form_room: "Room #",
-                form_subject: "Subject", form_send: "📤 Send", footer_rights: "All rights reserved",
-                footer_manager: "Manager",
-                chat_welcome: "Hello! How can I help you?",
-                chat_codes: "<strong>🔑 ACCESS CODES</strong><br>🚪 Gate : <strong>{portail}</strong><br>📶 WiFi : <strong>{wifi_reseau}</strong><br>🔐 Password : <strong>{wifi_mdp}</strong>",
-                chat_hours: "<strong>🕐 HOURS</strong><br>🍳 Kitchen : {cuisine}<br>🍽️ Meals : {repas}<br>🤫 Quiet time : from {silence}",
-                chat_rules: "<strong>📋 MAIN RULES</strong><br>🚭 No smoking inside<br>🍺 No alcohol/drugs<br>🐕 No pets<br>🚪 No visitors in rooms",
-                chat_contact: "<strong>📞 CONTACT</strong><br>👤 Manager : {responsable}<br>📱 Tel : <a href='tel:{tel}'>{tel}</a>"
-            },
-            ru: {
-                nav_home: "🏠 Главная", nav_news: "📢 Новости", nav_rules: "📋 Правила", nav_contact: "📞 Контакт",
-                emergency_label: "Экстренные службы", install_prompt: "Установите приложение Saint-Eloi!", install_btn: "Установить",
-                last_update: "Последнее обновление", code_portail: "Код входа", code_wifi: "WiFi",
-                horaires_cuisine: "Кухня", silence: "Тишина", qr_title: "Поделитесь сайтом",
-                qr_desc: "Сканируйте для доступа", qr_print: "Печать QR-кода",
-                section_news: "Новости", section_rules: "Внутренние правила", section_contact: "Контакт",
-                btn_call: "Позвонить", chat_title: "Ассистент Saint-Eloi", chat_btn_hours: "Часы", chat_btn_rules: "Правила",
-                chat_placeholder: "Введите вопрос...", form_name: "Ваше имя", form_room: "№ комнаты",
-                form_subject: "Тема", form_send: "📤 Отправить", footer_rights: "Все права защищены",
-                footer_manager: "Ответственный",
-                chat_welcome: "Здравствуйте! Чем могу помочь?",
-                chat_codes: "<strong>🔑 КОДЫ ДОСТУПА</strong><br>🚪 Вход : <strong>{portail}</strong><br>📶 WiFi : <strong>{wifi_reseau}</strong><br>🔐 Пароль : <strong>{wifi_mdp}</strong>",
-                chat_hours: "<strong>🕐 ЧАСЫ РАБОТЫ</strong><br>🍳 Кухня : {cuisine}<br>🍽️ Еда : {repas}<br>🤫 Тишина : с {silence}",
-                chat_rules: "<strong>📋 ОСНОВНЫЕ ПРАВИЛА</strong><br>🚭 Не курить внутри<br>🍺 Алкоголь/наркотики запрещены<br>🐕 Без животных<br>🚪 Без посетителей в комнатах",
-                chat_contact: "<strong>📞 КОНТАКТ</strong><br>👤 Ответственный : {responsable}<br>📱 Тел : <a href='tel:{tel}'>{tel}</a>"
-            },
-            ar: {
-                nav_home: "🏠 الرئيسية", nav_news: "📢 الأخبار", nav_rules: "📋 القواعد", nav_contact: "📞 اتصل",
-                emergency_label: "الطوارئ", install_prompt: "ثبّت تطبيق Saint-Eloi!", install_btn: "تثبيت",
-                last_update: "آخر تحديث", code_portail: "رمز البوابة", code_wifi: "واي فاي",
-                horaires_cuisine: "المطبخ", silence: "الهدوء", qr_title: "شارك الموقع",
-                qr_desc: "امسح للوصول للموقع", qr_print: "طباعة رمز QR",
-                section_news: "الأخبار", section_rules: "النظام الداخلي", section_contact: "اتصل بنا",
-                btn_call: "اتصل", chat_title: "مساعد Saint-Eloi", chat_btn_hours: "الأوقات", chat_btn_rules: "القواعد",
-                chat_placeholder: "اكتب سؤالك...", form_name: "اسمك", form_room: "رقم الغرفة",
-                form_subject: "الموضوع", form_send: "📤 إرسال", footer_rights: "جميع الحقوق محفوظة",
-                footer_manager: "المسؤول",
-                chat_welcome: "مرحباً! كيف يمكنني مساعدتك؟",
-                chat_codes: "<strong>🔑 رموز الدخول</strong><br>🚪 البوابة : <strong>{portail}</strong><br>📶 WiFi : <strong>{wifi_reseau}</strong><br>🔐 كلمة السر : <strong>{wifi_mdp}</strong>",
-                chat_hours: "<strong>🕐 الأوقات</strong><br>🍳 المطبخ : {cuisine}<br>🍽️ الوجبات : {repas}<br>🤫 الهدوء : من {silence}",
-                chat_rules: "<strong>📋 القواعد الرئيسية</strong><br>🚭 ممنوع التدخين<br>🍺 ممنوع الكحول/المخدرات<br>🐕 ممنوع الحيوانات<br>🚪 ممنوع الزوار في الغرف",
-                chat_contact: "<strong>📞 اتصل</strong><br>👤 المسؤول : {responsable}<br>📱 هاتف : <a href='tel:{tel}'>{tel}</a>"
-            },
-            ka: {
-                nav_home: "🏠 მთავარი", nav_news: "📢 სიახლეები", nav_rules: "📋 წესები", nav_contact: "📞 კონტაქტი",
-                emergency_label: "გადაუდებელი", install_prompt: "დააინსტალირეთ Saint-Eloi!", install_btn: "ინსტალაცია",
-                last_update: "ბოლო განახლება", code_portail: "კარიბჭის კოდი", code_wifi: "WiFi",
-                horaires_cuisine: "სამზარეულო", silence: "სიჩუმე", qr_title: "გააზიარეთ საიტი",
-                qr_desc: "დაასკანერეთ საიტზე შესასვლელად", qr_print: "QR კოდის ბეჭდვა",
-                section_news: "სიახლეები", section_rules: "შინაგანი წესები", section_contact: "კონტაქტი",
-                btn_call: "დარეკვა", chat_title: "Saint-Eloi ასისტენტი", chat_btn_hours: "საათები", chat_btn_rules: "წესები",
-                chat_placeholder: "დაწერეთ კითხვა...", form_name: "თქვენი სახელი", form_room: "ოთახის №",
-                form_subject: "თემა", form_send: "📤 გაგზავნა", footer_rights: "ყველა უფლება დაცულია",
-                footer_manager: "პასუხისმგებელი",
-                chat_welcome: "გამარჯობა! როგორ შემიძლია დაგეხმაროთ?",
-                chat_codes: "<strong>🔑 შესვლის კოდები</strong><br>🚪 კარიბჭე : <strong>{portail}</strong><br>📶 WiFi : <strong>{wifi_reseau}</strong><br>🔐 პაროლი : <strong>{wifi_mdp}</strong>",
-                chat_hours: "<strong>🕐 საათები</strong><br>🍳 სამზარეულო : {cuisine}<br>🍽️ კვება : {repas}<br>🤫 სიჩუმე : {silence}-დან",
-                chat_rules: "<strong>📋 ძირითადი წესები</strong><br>🚭 არ მოწიოთ შიგნით<br>🍺 ალკოჰოლი/ნარკოტიკები აკრძალულია<br>🐕 ცხოველები აკრძალულია<br>🚪 სტუმრები ოთახებში აკრძალულია",
-                chat_contact: "<strong>📞 კონტაქტი</strong><br>👤 პასუხისმგებელი : {responsable}<br>📱 ტელ : <a href='tel:{tel}'>{tel}</a>"
-            },
-            hy: {
-                nav_home: "🏠 Գdelays", nav_news: "📢 Նdelays", nav_rules: "📋 Կdelays", nav_contact: "📞 Կdelays",
-                emergency_label: "Արdelays", install_prompt: "Տdelays Saint-Eloi!", install_btn: "Տdelays",
-                last_update: "Delays", code_portail: "Delays", code_wifi: "WiFi",
-                horaires_cuisine: "Delays", silence: "Delays", qr_title: "Delays",
-                qr_desc: "Delays", qr_print: "Delays",
-                section_news: "Delays", section_rules: "Delays", section_contact: "Delays",
-                btn_call: "Delays", chat_title: "Saint-Eloi Delays", chat_btn_hours: "Delays", chat_btn_rules: "Delays",
-                chat_placeholder: "Delays...", form_name: "Delays", form_room: "Delays",
-                form_subject: "Delays", form_send: "📤 Delays", footer_rights: "Delays",
-                footer_manager: "Delays",
-                chat_welcome: "Delays! Delays?",
-                chat_codes: "<strong>🔑 Delays</strong><br>🚪 Delays : <strong>{portail}</strong><br>📶 WiFi : <strong>{wifi_reseau}</strong><br>🔐 Delays : <strong>{wifi_mdp}</strong>",
-                chat_hours: "<strong>🕐 Delays</strong><br>🍳 Delays : {cuisine}<br>🍽️ Delays : {repas}<br>🤫 Delays : {silence}",
-                chat_rules: "<strong>📋 Delays</strong><br>🚭 Delays<br>🍺 Delays<br>🐕 Delays<br>🚪 Delays",
-                chat_contact: "<strong>📞 Delays</strong><br>👤 Delays : {responsable}<br>📱 Delays : <a href='tel:{tel}'>{tel}</a>"
-            }
-        };
-        
-        function changeLanguage(lang) {
-            currentLang = lang;
-            document.documentElement.lang = lang;
-            document.body.dir = (lang === 'ar') ? 'rtl' : 'ltr';
-            
-            // Update all translated elements
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (TRANSLATIONS[lang] && TRANSLATIONS[lang][key]) {
-                    el.innerHTML = TRANSLATIONS[lang][key];
-                }
-            });
-            
-            // Update placeholders
-            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-                const key = el.getAttribute('data-i18n-placeholder');
-                if (TRANSLATIONS[lang] && TRANSLATIONS[lang][key]) {
-                    el.placeholder = TRANSLATIONS[lang][key];
-                }
-            });
-            
-            // Update chat welcome
-            document.getElementById('chatWelcome').innerHTML = TRANSLATIONS[lang].chat_welcome;
-            
-            // Reload news in new language
-            loadNews();
-            
-            localStorage.setItem('saint-eloi-lang', lang);
-        }
-        
-        // =====================
-        // THEME MANAGEMENT
-        // =====================
-        function toggleTheme() {
-            const current = document.documentElement.getAttribute('data-theme');
-            const newTheme = current === 'dark' ? 'light' : 'dark';
-            document.documentElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('saint-eloi-theme', newTheme);
-        }
-        
-        // =====================
-        // FONT SIZE
-        // =====================
-        let fontSize = 16;
-        function changeFontSize(delta) {
-            fontSize = Math.max(12, Math.min(24, fontSize + delta));
-            document.documentElement.style.setProperty('--font-size-base', fontSize + 'px');
-            localStorage.setItem('saint-eloi-fontsize', fontSize);
-        }
-        
-        // =====================
-        // QR CODE
-        // =====================
-        function generateQR() {
-            const qrContainer = document.getElementById('qrcode');
-            qrContainer.innerHTML = '';
-            new QRCode(qrContainer, {
-                text: window.location.href,
-                width: 150,
-                height: 150,
-                colorDark: "#2c5530",
-                colorLight: "#ffffff"
-            });
-        }
-        
-        function printQR() {
-            const printWindow = window.open('', '_blank');
-            const qrImg = document.querySelector('#qrcode img');
-            printWindow.document.write(`
-                <html>
-                <head><title>QR Code Saint-Eloi</title></head>
-                <body style="text-align:center;padding:50px;">
-                    <h1>🏠 Saint-Eloi</h1>
-                    <p>Scannez ce code pour accéder au site</p>
-                    <img src="${qrImg.src}" style="width:300px;height:300px;margin:30px;">
-                    <p style="font-size:12px;">${window.location.href}</p>
-                </body>
-                </html>
-            `);
-            printWindow.document.close();
-            printWindow.print();
-        }
-        
-        // =====================
-        // CHATBOT
-        // =====================
-        function toggleChat() {
-            document.getElementById('chatWindow').classList.toggle('open');
-        }
-        
-        function addChatMessage(content, isBot = true) {
-            const chatBody = document.getElementById('chatBody');
-            const msg = document.createElement('div');
-            msg.className = 'chat-message ' + (isBot ? 'bot' : 'user');
-            msg.innerHTML = content;
-            chatBody.appendChild(msg);
-            chatBody.scrollTop = chatBody.scrollHeight;
-        }
-        
-        function addInfoBox(content) {
-            const chatBody = document.getElementById('chatBody');
-            const box = document.createElement('div');
-            box.className = 'chat-info-box';
-            box.innerHTML = content;
-            chatBody.appendChild(box);
-            chatBody.scrollTop = chatBody.scrollHeight;
-        }
-        
-        function showCodes() {
-            const t = TRANSLATIONS[currentLang].chat_codes
-                .replace('{portail}', CONFIG.codes.portail)
-                .replace('{wifi_reseau}', CONFIG.codes.wifi_reseau)
-                .replace('{wifi_mdp}', CONFIG.codes.wifi_mdp);
-            addInfoBox(t);
-        }
-        
-        function showHours() {
-            const cuisine = CONFIG.horaires.cuisine_ouverture + '-' + CONFIG.horaires.cuisine_fermeture;
-            const repas = CONFIG.horaires.repas_midi_debut + '-' + CONFIG.horaires.repas_midi_fin + 
-                          ' & ' + CONFIG.horaires.repas_soir_debut + '-' + CONFIG.horaires.repas_soir_fin;
-            const t = TRANSLATIONS[currentLang].chat_hours
-                .replace('{cuisine}', cuisine)
-                .replace('{repas}', repas)
-                .replace('{silence}', CONFIG.horaires.silence);
-            addInfoBox(t);
-        }
-        
-        function showRules() {
-            addInfoBox(TRANSLATIONS[currentLang].chat_rules);
-        }
-        
-        function showContact() {
-            const t = TRANSLATIONS[currentLang].chat_contact
-                .replace('{responsable}', CONFIG.contact.responsable)
-                .replace(/{tel}/g, CONFIG.contact.telephone);
-            addInfoBox(t);
-        }
-        
-        function sendChat() {
-            const input = document.getElementById('chatInput');
-            const msg = input.value.trim();
-            if (!msg) return;
-            
-            addChatMessage(msg, false);
-            input.value = '';
-            
-            // Simple keyword detection
-            const lower = msg.toLowerCase();
-            setTimeout(() => {
-                if (lower.includes('code') || lower.includes('wifi') || lower.includes('portail') || lower.includes('password')) {
-                    showCodes();
-                } else if (lower.includes('horaire') || lower.includes('heure') || lower.includes('hour') || lower.includes('cuisine') || lower.includes('repas')) {
-                    showHours();
-                } else if (lower.includes('règle') || lower.includes('interdit') || lower.includes('rule') || lower.includes('fumer') || lower.includes('alcool')) {
-                    showRules();
-                } else if (lower.includes('contact') || lower.includes('responsable') || lower.includes('téléphone') || lower.includes('appeler')) {
-                    showContact();
-                } else {
-                    addChatMessage(currentLang === 'fr' ? 
-                        "Je n'ai pas compris. Utilisez les boutons ci-dessus ou reformulez votre question." :
-                        "I didn't understand. Please use the buttons above or rephrase your question.");
-                }
-            }, 500);
-        }
-        
-        // =====================
-        // PWA INSTALL
-        // =====================
-        let deferredPrompt;
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            document.getElementById('installBanner').classList.add('show');
-        });
-        
-        function installPWA() {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-                deferredPrompt.userChoice.then((result) => {
-                    document.getElementById('installBanner').classList.remove('show');
-                    deferredPrompt = null;
-                });
-            }
-        }
-        
-        // =====================
-        // INITIALIZATION
-        // =====================
-        document.addEventListener('DOMContentLoaded', () => {
-            // Load config
-            loadConfig();
-            
-            // Restore preferences
-            const savedLang = localStorage.getItem('saint-eloi-lang');
-            if (savedLang) {
-                document.getElementById('langSelect').value = savedLang;
-                changeLanguage(savedLang);
-            }
-            
-            const savedTheme = localStorage.getItem('saint-eloi-theme');
-            if (savedTheme) {
-                document.documentElement.setAttribute('data-theme', savedTheme);
-            }
-            
-            const savedFontSize = localStorage.getItem('saint-eloi-fontsize');
-            if (savedFontSize) {
-                fontSize = parseInt(savedFontSize);
-                document.documentElement.style.setProperty('--font-size-base', fontSize + 'px');
-            }
-            
-            // Smooth scroll
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                if (!response.ok) return;
+                const config = await response.json();
+                
+                // Mettre à jour les données dynamiques
+                ['fr', 'en', 'ru', 'ar', 'ka', 'hy'].forEach(lang => {
+                    if (!translations[lang]) return;
+                    
+                    // Actualité principale
+                    if (config.actualites && config.actualites[0]) {
+                        const actu = config.actualites[0];
+                        if (actu.date && actu.date[lang]) translations[lang].news_feb_date = actu.date[lang];
+                        if (actu.titre && actu.titre[lang]) translations[lang].news_feb_title = actu.titre[lang];
+                        if (actu.contenu && actu.contenu[lang]) translations[lang].news_feb_body = actu.contenu[lang];
+                    }
+                    
+                    // Codes WiFi/Portail
+                    if (config.codes) {
+                        translations[lang].chat_codes = `<strong>🔑 CODES</strong><br>🚪 Portail : <strong>${config.codes.portail}</strong><br>📶 ${config.codes.wifi_reseau} : <strong>${config.codes.wifi_mdp}</strong>`;
+                    }
+                    
+                    // Contact
+                    if (config.contact) {
+                        translations[lang].chat_contact = `<strong>📞 CONTACT</strong><br>👤 ${config.contact.responsable}<br>📱 ${config.contact.telephone}<br>💬 SMS !`;
                     }
                 });
-            });
-        });
-        
-        // Register Service Worker
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js').catch(() => {});
+                
+                changeLanguage();
+                console.log('✅ Config.json chargé !');
+            } catch (e) {
+                console.log('ℹ️ Pas de config.json, valeurs par défaut utilisées');
+            }
         }
+
+        // Init
+        loadConfig().then(() => changeLanguage());
     </script>
 </body>
 </html>
