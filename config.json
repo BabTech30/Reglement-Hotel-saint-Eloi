@@ -2,7 +2,7 @@
   "site": {
     "nom": "Saint-Eloi",
     "adresse": "7 Rue Albert Leenhardt, 34000 Montpellier",
-    "derniere_maj": "2025-02-04"
+    "derniere_maj": "2025-02-13"
   },
   
   "codes": {
@@ -38,28 +38,28 @@
     {
       "id": "reunion-fevrier",
       "date": {
-        "fr": "23 Février",
-        "en": "Feb 23rd",
-        "ru": "23 февраля",
-        "ar": "23 فبراير",
-        "ka": "23 თებერვალი",
-        "hy": "Փdelays 23"
+        "fr": "Lundi 23 Février",
+        "en": "Monday, February 23",
+        "ru": "Понедельник, 23 февраля",
+        "ar": "الاثنين 23 فبراير",
+        "ka": "ორშაბათი, 23 თებერვალი",
+        "hy": "Երկdelays, 23 Փdelays"
       },
       "titre": {
-        "fr": "Prochaine Réunion",
-        "en": "Next Meeting",
-        "ru": "Следующее собрание",
-        "ar": "الاجتماع القادم",
-        "ka": "შემდეგი შეხვედრა",
-        "hy": "Հdelays Հdelays"
+        "fr": "Réunion d'information",
+        "en": "Information Meeting",
+        "ru": "Информационное собрание",
+        "ar": "اجتماع إعلامي",
+        "ka": "საინფორმაციო შეხვედრა",
+        "hy": "Տdelays Delays"
       },
       "contenu": {
-        "fr": "La prochaine réunion aura lieu le <strong>lundi 23 février à 10h</strong> avec les Travailleurs Sociaux.<br><br><em>Merci de noter cette date ! 📅</em>",
-        "en": "The next meeting will be held on <strong>Monday, February 23rd at 10am</strong> with Social Workers.<br><br><em>Please note this date! 📅</em>",
-        "ru": "Следующее собрание состоится в <strong>понедельник, 23 февраля в 10:00</strong> с социальными работниками.<br><br><em>Пожалуйста, запишите эту дату! 📅</em>",
-        "ar": "سيعقد الاجتماع القادم يوم <strong>الاثنين 23 فبراير الساعة 10 صباحاً</strong> مع الأخصائيين الاجتماعيين.<br><br><em>يرجى تدوين هذا التاريخ! 📅</em>",
-        "ka": "შემდეგი შეხვედრა გაიმართება <strong>ორშაბათს, 23 თებერვალს 10:00 საათზე</strong> სოციალურ მუშაკებთან ერთად.<br><br><em>გთხოვთ დაიმახსოვროთ ეს თარიღი! 📅</em>",
-        "hy": "Delays delays delays."
+        "fr": "La réunion d'information aura lieu le <strong>lundi 23 février à 10h</strong> autour d'un moment de partage chaleureux et convivial.<br><br><em>Merci par avance de votre présence. 🙏</em>",
+        "en": "The information meeting will be held on <strong>Monday, February 23rd at 10am</strong> in a warm and friendly atmosphere.<br><br><em>Thank you in advance for your presence. 🙏</em>",
+        "ru": "Информационное собрание состоится в <strong>понедельник, 23 февраля в 10:00</strong> в тёплой и дружеской атмосфере.<br><br><em>Заранее благодарим за ваше присутствие. 🙏</em>",
+        "ar": "سيعقد الاجتماع الإعلامي يوم <strong>الاثنين 23 فبراير الساعة 10 صباحاً</strong> في جو دافئ وودي.<br><br><em>شكراً مقدماً على حضوركم. 🙏</em>",
+        "ka": "საინფორმაციო შეხვედრა გაიმართება <strong>ორშაბათს, 23 თებერვალს 10:00 საათზე</strong> თბილ და მეგობრულ ატმოსფეროში.<br><br><em>წინასწარ გმადლობთ დასწრებისთვის. 🙏</em>",
+        "hy": "Delays delays <strong>delays 23 delays 10:00</strong> delays delays.<br><br><em>Delays delays. 🙏</em>"
       },
       "important": true,
       "actif": true
