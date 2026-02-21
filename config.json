@@ -14,24 +14,12 @@
   "horaires": {
     "cuisine_ouverture": "08h00",
     "cuisine_fermeture": "22h00",
-    "repas_midi_debut": "11h00",
-    "repas_midi_fin": "14h00",
-    "repas_soir_debut": "18h00",
-    "repas_soir_fin": "21h00",
     "silence": "23h00"
   },
   
   "contact": {
     "responsable": "Bastien",
-    "telephone": "0613703810",
-    "email": "contact@saint-eloi.fr"
-  },
-  
-  "urgences": {
-    "samu": "15",
-    "pompiers": "18",
-    "police": "17",
-    "europe": "112"
+    "telephone": "06 13 70 38 10"
   },
   
   "actualites": [
@@ -43,7 +31,7 @@
         "ru": "Понедельник, 23 февраля",
         "ar": "الاثنين 23 فبراير",
         "ka": "ორშაბათი, 23 თებერვალი",
-        "hy": "Երկdelays, 23 Փdelays"
+        "hy": "Երdelays, 23 Փdelays"
       },
       "titre": {
         "fr": "Réunion d'information",
@@ -61,46 +49,7 @@
         "ka": "საინფორმაციო შეხვედრა გაიმართება <strong>ორშაბათს, 23 თებერვალს 10:00 საათზე</strong> თბილ და მეგობრულ ატმოსფეროში.<br><br><em>წინასწარ გმადლობთ დასწრებისთვის. 🙏</em>",
         "hy": "Delays delays <strong>delays 23 delays 10:00</strong> delays delays.<br><br><em>Delays delays. 🙏</em>"
       },
-      "important": true,
-      "actif": true
-    },
-    {
-      "id": "message-janvier",
-      "date": {
-        "fr": "Janvier 2025",
-        "en": "January 2025",
-        "ru": "Январь 2025",
-        "ar": "يناير 2025",
-        "ka": "იანვარი 2025",
-        "hy": "Հdelays 2025"
-      },
-      "titre": {
-        "fr": "Message de la direction",
-        "en": "Message from Management",
-        "ru": "Сообщение от руководства",
-        "ar": "رسالة من الإدارة",
-        "ka": "ხელმძღვანელობის შეტყობინება",
-        "hy": "Delays delays"
-      },
-      "contenu": {
-        "fr": "Je remercie <strong>Armer et Abésalom</strong> pour leur présence à la réunion.<br><br>Bon début d'année, et que Dieu veille sur chacun d'entre nous 🙏.",
-        "en": "I thank <strong>Armer and Abésalom</strong> for their presence at the meeting.<br><br>Happy New Year, and may God watch over each of us 🙏.",
-        "ru": "Благодарю <strong>Армера и Абесалома</strong> за присутствие на собрании.<br><br>С Новым годом, и да хранит вас Бог 🙏.",
-        "ar": "أشكر <strong>أرمير وأبيسالوم</strong> على حضورهما الاجتماع.<br><br>سنة جديدة سعيدة، وليحفظكم الله 🙏.",
-        "ka": "მადლობა <strong>არმერს და აბესალომს</strong> შეხვედრაზე დასწრებისთვის.<br><br>ბედნიერ ახალ წელს, ღმერთმა დაგიფაროთ 🙏.",
-        "hy": "Delays delays 🙏."
-      },
-      "important": false,
-      "actif": true
+      "important": true
     }
-  ],
-  
-  "message_chatbot": {
-    "fr": "Bonjour ! Je suis l'assistant Saint-Eloi. Comment puis-je vous aider ?",
-    "en": "Hello! I'm the Saint-Eloi assistant. How can I help you?",
-    "ru": "Здравствуйте! Я ассистент Saint-Eloi. Чем могу помочь?",
-    "ar": "مرحباً! أنا مساعد Saint-Eloi. كيف يمكنني مساعدتك؟",
-    "ka": "გამარჯობა! მე ვარ Saint-Eloi ასისტენტი. როგორ შემიძლია დაგეხმაროთ?",
-    "hy": "Delays! Delays Saint-Eloi delays."
-  }
+  ]
 }
